@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.homeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:ignore="UselessParent">
+
+        <com.yangp.ypwaveview.YPWaveView
+            android:id="@+id/progress_circular"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_230sdp"
+            android:layout_marginBottom="@dimen/_50sdp"
+            app:animatorEnable="true"
+            app:behideColor="#520CD9EC"
+            app:borderColor="#42BBEE"
+            app:borderWidthSize="@dimen/_5sdp"
+            app:frontColor="#A642BBEE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.493"
+            app:shapePadding="@dimen/_10sdp"
+            app:shapeType="circle"
+            app:strong="55"
+            app:textColor="#000000"
+            app:textHidden="false" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/cupSelector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_80sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabCustomSize="@dimen/_25sdp"
+            app:elevation="@dimen/_10sdp"
+            android:src="@drawable/baseline_coffee_24"
+            app:maxImageSize="@dimen/_20sdp"
+            app:backgroundTint="@color/white"
+            android:contentDescription="TODO"
+            android:layout_marginEnd="@dimen/_15sdp">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dailyConsumptionCurrent"
+            app:layout_constraintRight_toLeftOf="@id/slash"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@id/progress_circular"
+            android:text=""
+            android:textSize="@dimen/_23ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textview.MaterialTextView>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/slash"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@id/progress_circular"
+            android:text="/"
+            android:textSize="@dimen/_23ssp"
+            android:textColor="@color/black"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingRight="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textview.MaterialTextView>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dailyConsumptionNeed"
+            app:layout_constraintLeft_toRightOf="@id/slash"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@id/progress_circular"
+            android:text=""
+            android:textSize="@dimen/_23ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:contentDescription="@string/addwater"
+            android:src="@drawable/baseline_add_24"
+            app:fabSize="auto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintCircleRadius="@dimen/_25sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:maxImageSize="@dimen/_25sdp">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
