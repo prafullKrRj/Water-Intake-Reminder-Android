@@ -64,6 +64,7 @@ public class homeFragment extends Fragment {
         progress = view.findViewById(R.id.progress_circular);
         progress.setMax(dailyNeedValue);
         progress.setProgress(Math.min(current, dailyNeedValue));
+
         add = view.findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,10 +103,8 @@ public class homeFragment extends Fragment {
             public void onClick(View view) {
                 String qty = Objects.requireNonNull(quantity.getText()).toString();
                 if (!qty.isEmpty()){
-                    dialog.dismiss();
-                }
-                else{
                     oneTimeIntake = Integer.parseInt(qty);
+                    dialog.dismiss();
                 }
             }
         });

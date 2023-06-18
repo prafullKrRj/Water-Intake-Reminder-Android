@@ -1,43 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    app:cardUseCompatPadding="true"
+    android:clickable="true"
+    app:cardCornerRadius="@dimen/_5sdp"
     android:padding="8dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/df"
+            android:src="@drawable/glass_type"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp">
         </ImageView>
-        <LinearLayout
-            android:layout_marginLeft="@dimen/_10sdp"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:padding="@dimen/_7sdp"
             android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginStart="@dimen/_10sdp">
             <TextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/textAmount"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="ml"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintLeft_toRightOf="@id/textAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
+            </TextView>
             <TextView
                 android:id="@+id/textTime"
                 android:layout_gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/deleteButtonHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp" />
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/deleteButtonHistory"
+                android:padding="@dimen/_8ssp"
+                android:src="@drawable/baseline_delete_24"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@color/white"
+                android:outlineSpotShadowColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                >
+
+            </ImageButton>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

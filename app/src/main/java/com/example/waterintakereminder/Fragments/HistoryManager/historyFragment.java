@@ -17,6 +17,7 @@ import com.example.waterintakereminder.Fragments.HistoryManager.RecyclerView.His
 import com.example.waterintakereminder.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class historyFragment extends Fragment {
@@ -34,10 +35,12 @@ public class historyFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DBHandler dbHandler = new DBHandler(getContext());
         List<HistoryModel> historyModels = dbHandler.getHistory();
+        Collections.reverse(historyModels);
         HistoryAdapter adapter = new HistoryAdapter(historyModels, getContext());
 
         if (!historyModels.isEmpty()){
             TextView textView = view.findViewById(R.id.emptyText);
+            textView.setText("");
             recyclerView.setAdapter(adapter);
         }
         return view;
