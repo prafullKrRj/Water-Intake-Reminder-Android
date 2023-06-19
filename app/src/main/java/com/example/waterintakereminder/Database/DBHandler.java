@@ -1,15 +1,16 @@
 package com.example.waterintakereminder.Database;
 
-import static com.example.waterintakereminder.Database.params.params.ANALYTICS_TABLE;
-import static com.example.waterintakereminder.Database.params.params.CURRENT_AMOUNT;
-import static com.example.waterintakereminder.Database.params.params.CURRENT_TIME;
-import static com.example.waterintakereminder.Database.params.params.DATABASE_NAME;
-import static com.example.waterintakereminder.Database.params.params.DATE;
-import static com.example.waterintakereminder.Database.params.params.DB_VERSION;
-import static com.example.waterintakereminder.Database.params.params.FINAL_AMOUNT;
-import static com.example.waterintakereminder.Database.params.params.HISTORY_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.AMOUNT_AMOUNT_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.ANALYTICS_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.CURRENT_AMOUNT;
+import static com.example.waterintakereminder.Database.params_db.params.CURRENT_TIME;
+import static com.example.waterintakereminder.Database.params_db.params.DATABASE_NAME;
+import static com.example.waterintakereminder.Database.params_db.params.DATE;
+import static com.example.waterintakereminder.Database.params_db.params.DB_VERSION;
+import static com.example.waterintakereminder.Database.params_db.params.FINAL_AMOUNT;
+import static com.example.waterintakereminder.Database.params_db.params.HISTORY_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.TABLE_AMOUNT;
 
-import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,13 +21,12 @@ import androidx.annotation.Nullable;
 
 import com.example.waterintakereminder.Fragments.HistoryManager.RecyclerView.HistoryModel;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TooManyListenersException;
 
 public class DBHandler extends SQLiteOpenHelper {
+    private int lastAmount;
 
     public DBHandler(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DB_VERSION);
@@ -36,8 +36,10 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String historyTable = "create Table history(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, time TEXT)";
         String analyticsTable = "create Table analytics(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, date TEXT)";
+        String amount = "create table currAmount(amount TEXT)";
         sqLiteDatabase.execSQL(historyTable);
         sqLiteDatabase.execSQL(analyticsTable);
+        sqLiteDatabase.execSQL(amount);
     }
 
     @Override
@@ -51,6 +53,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(DATE, date);
         database.insert(ANALYTICS_TABLE, null, values);
     }
+
     public void regularAmountInsertion(int amount){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -60,7 +63,6 @@ public class DBHandler extends SQLiteOpenHelper {
     }
     public int current(){
         SQLiteDatabase database = this.getReadableDatabase();
-
         String select = "SELECT * FROM "+HISTORY_TABLE;
         Cursor cursor = database.rawQuery(select, null);
         int sum=0;
@@ -90,4 +92,35 @@ public class DBHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public void updateAmount(int amount){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(AMOUNT_AMOUNT_TABLE, String.valueOf(amount));
+        database.insert(TABLE_AMOUNT, null, values);
+    }
+    public int getCurrAmount(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String select = "SELECT * FROM " + TABLE_AMOUNT;
+        Cursor cursor = database.rawQuery(select, null);
+        if(cursor.moveToFirst()){
+            do{
+                lastAmount = Integer.parseInt(cursor.getString(0));
+            }while(cursor.moveToNext());
+        }
+        return lastAmount;
+    }
+
+    public int size(){
+        int n=0;
+        SQLiteDatabase database = this.getReadableDatabase();
+        String select = "SELECT * FROM " + HISTORY_TABLE;
+        Cursor cursor = database.rawQuery(select, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                n++;
+            }while(cursor.moveToNext());
+        }
+        return n;
+    }
 }

@@ -24,4 +24,6 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="empty_log">EMPTY LOG!</string>
+    <string name="openDrawer">Open Navigation Drawer</string>
+    <string name="closeDrawer">Close Navigation Drawer</string>
 </resources>

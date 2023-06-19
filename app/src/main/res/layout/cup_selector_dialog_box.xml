@@ -1,70 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_constraintCircleRadius="@dimen/_25sdp"
     android:layout_width="@dimen/_250sdp"
     android:orientation="vertical"
+    app:cardCornerRadius="@dimen/_10sdp"
+    android:clickable="true"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_margin="@dimen/_20sdp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:src="@drawable/glass_type"
-            android:layout_width="@dimen/_55sdp"
-            android:layout_height="@dimen/_55sdp">
-        </ImageView>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_margin="@dimen/_20sdp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/quantity"
-                android:inputType="number"
-                android:maxLength="4"
-                android:typeface="serif"
-                android:textSize="@dimen/_15ssp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_width="@dimen/_100sdp"
+            <ImageView
+                android:src="@drawable/glass_type"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp">
+            </ImageView>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/quantity"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:typeface="serif"
+                    android:textSize="@dimen/_15ssp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content">
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:text="ml"
-            android:layout_gravity="center_vertical"
-            android:textSize="@dimen/_15ssp"
-            android:layout_width="wrap_content"
+            <TextView
+                android:text="ml"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/_15ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_height="wrap_content">
-
-        </TextView>
+            <TextView
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:id="@+id/ok"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/cancel_button"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ok"
+                android:text="@string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginRight="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:id="@+id/ok"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="@string/ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/cancel_button"
-            android:layout_marginRight="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/ok"
-            android:text="@string/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

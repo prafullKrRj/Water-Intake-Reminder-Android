@@ -1,34 +1,30 @@
 package com.example.waterintakereminder;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.Fragments.SettingsFragment;
 import com.example.waterintakereminder.Fragments.alarmManagerFragment;
 import com.example.waterintakereminder.Fragments.analyticsFragment;
 import com.example.waterintakereminder.Fragments.HistoryManager.historyFragment;
-import com.example.waterintakereminder.Fragments.homeFragment;
+import com.example.waterintakereminder.Fragments.homeManager.homeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -50,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
                 changeFragment(new homeFragment());
             return true;
         });
+
     }
+
+
+
     public void changeFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();

@@ -1,29 +1,18 @@
-package com.example.waterintakereminder.Fragments;
+package com.example.waterintakereminder.Fragments.homeManager;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.waterintakereminder.Database.DBHandler;
-import com.example.waterintakereminder.MainActivity;
 import com.example.waterintakereminder.R;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.dialog.MaterialDialogs;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 import com.yangp.ypwaveview.YPWaveView;
@@ -37,10 +26,7 @@ public class homeFragment extends Fragment {
     private LocalDate prev;
     private YPWaveView progress;
     private int glassValue, dailyNeedValue, current;
-    private static MaterialTextView dailyConsumptionCurrent;
-    private static MaterialTextView dailyConsumptionNeed;
-    public static int oneTimeIntake;
-    private static boolean clicked = false;
+    protected static MaterialTextView dailyConsumptionCurrent, dailyConsumptionNeed, currentAddingAmountShower;
     public DBHandler db;
     public homeFragment() {
         // Required empty public constructor
@@ -51,12 +37,15 @@ public class homeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         db = new DBHandler(getContext());
+        currentAddingAmountShower = view.findViewById(R.id.currentAddingAmountShower);
+        if (db.size()==0){
+            db.updateAmount(125);
+            currentAddingAmountShower.setText(str(125));
+        }
         init();
 
         current=db.current();
-
         dailyNeedValue = 2145;
-        oneTimeIntake = 125;
         dailyConsumptionCurrent = view.findViewById(R.id.dailyConsumptionCurrent);
         dailyConsumptionNeed = view.findViewById(R.id.dailyConsumptionNeed);
         setText(view, str(current), str(dailyNeedValue));
@@ -69,12 +58,14 @@ public class homeFragment extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = db.current()+oneTimeIntake;
+                int a = db.getCurrAmount();
+                current = db.current()+db.getCurrAmount();
                 progress.setProgress(Math.min(current, dailyNeedValue));
                 setText(view, str(current), str(dailyNeedValue));
-                db.regularAmountInsertion(oneTimeIntake);
+                db.regularAmountInsertion(db.getCurrAmount());
             }
         });
+
         cupSelector = view.findViewById(R.id.cupSelector);
         cupSelector.setOnClickListener(view1 -> {
             showDialogCupSelector();
@@ -82,8 +73,9 @@ public class homeFragment extends Fragment {
         return view;
     }
 
+
     private void showDialogCupSelector(){
-        Dialog dialog = new Dialog(getActivity());
+        Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.cup_selector_dialog_box);
         dialog.setCancelable(false);
 
@@ -96,14 +88,15 @@ public class homeFragment extends Fragment {
                 dialog.dismiss();
             }
         });
-        
+
         TextView okButton = dialog.findViewById(R.id.ok);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String qty = Objects.requireNonNull(quantity.getText()).toString();
                 if (!qty.isEmpty()){
-                    oneTimeIntake = Integer.parseInt(qty);
+                    db.updateAmount(Integer.parseInt(qty));
+                    currentAddingAmountShower.setText(str(Integer.parseInt(qty)));
                     dialog.dismiss();
                 }
             }
@@ -111,7 +104,7 @@ public class homeFragment extends Fragment {
         dialog.show();
     }
 
-    private static String str(int val){
+    static String str(int val){
         return String.valueOf(val);
     }
     private static void setText(View view, String current, String dailyNeed){

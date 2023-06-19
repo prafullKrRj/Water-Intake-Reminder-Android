@@ -1,8 +1,4 @@
-package com.example.waterintakereminder.Database.params;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
+package com.example.waterintakereminder.Database.params_db;
 
 public class params {
     public static final String DATABASE_NAME = "database";
@@ -14,4 +10,7 @@ public class params {
     public static final String ANALYTICS_TABLE = "analytics";
     public static final String FINAL_AMOUNT = "amount";
     public static final String DATE = "date";
+
+    public static final String TABLE_AMOUNT = "currAmount";
+    public static final String AMOUNT_AMOUNT_TABLE = "amount";
 }
