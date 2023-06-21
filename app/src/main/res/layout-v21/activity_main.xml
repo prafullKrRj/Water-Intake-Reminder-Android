@@ -15,46 +15,70 @@
 
     </FrameLayout>
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:elevation="@dimen/_200sdp"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
+        android:outlineSpotShadowColor="@color/black"
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"
         android:background="#C442BBEE">
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_height="match_parent">
-
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/logoOnToolBar"
+                android:src="@drawable/logo"
+                android:layout_gravity="center_vertical"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp">
+            </com.google.android.material.imageview.ShapeableImageView>
             <TextView
-                android:textColor="#FFFFFF"
+                android:id="@+id/textViewToolBar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/reminderToggleToolBar"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            </TextView>
+            </androidx.appcompat.widget.AppCompatImageButton>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coordinator"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavView"
-                android:duplicateParentState="true"
-                app:itemHorizontalTranslationEnabled="false"
-                app:itemTextAppearanceActive="@style/BottomNavigationTextStyle"
-                app:itemTextAppearanceInactive="@style/BottomNavigationTextStyle"
-                app:labelVisibilityMode="labeled"
-                app:backgroundTint="#C442C5EE"
-                android:layout_marginTop="@dimen/_90sdp"
-                android:background="#C442C5EE"
-                app:itemIconSize="@dimen/_18sdp"
-                app:menu="@menu/nav_bar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_width="match_parent"
-                tools:ignore="VisualLintBottomNav" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavView"
+            android:duplicateParentState="true"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemTextAppearanceActive="@style/BottomNavigationTextStyle"
+            app:itemTextAppearanceInactive="@style/BottomNavigationTextStyle"
+            app:labelVisibilityMode="labeled"
+            app:backgroundTint="#C442C5EE"
+            android:layout_marginTop="@dimen/_90sdp"
+            android:background="#C442C5EE"
+            app:itemIconSize="@dimen/_18sdp"
+            app:menu="@menu/nav_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent"
+            tools:ignore="VisualLintBottomNav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

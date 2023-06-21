@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:layout_marginBottom="@dimen/_40sdp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +14,16 @@
         android:background="@color/white"
         tools:ignore="UselessParent">
 
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/progress_circular"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/weather"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp">
+
+        </ImageView>
         <com.yangp.ypwaveview.YPWaveView
             android:id="@+id/progress_circular"
             android:layout_width="@dimen/_230sdp"
@@ -21,7 +33,7 @@
             app:behideColor="#520CD9EC"
             app:borderColor="#42BBEE"
             app:borderWidthSize="@dimen/_5sdp"
-            app:frontColor="#A642BBEE"
+            app:frontColor="#5FD8FD"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -37,9 +49,8 @@
 
             android:id="@+id/cupSelector"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/_80sdp"
+            android:layout_marginBottom="@dimen/_50sdp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,13 +66,14 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/dailyConsumptionCurrent"
-            app:layout_constraintRight_toLeftOf="@id/slash"
-            android:layout_marginTop="@dimen/_30sdp"
-            app:layout_constraintTop_toBottomOf="@id/progress_circular"
-            android:text=""
-            android:textSize="@dimen/_23ssp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text=""
+            android:textColor="@color/md_theme_dark_secondary"
+            android:textSize="@dimen/_23ssp"
+            app:layout_constraintRight_toLeftOf="@id/slash"
+            app:layout_constraintTop_toBottomOf="@id/progress_circular">
 
         </com.google.android.material.textview.MaterialTextView>
         <com.google.android.material.textview.MaterialTextView
@@ -94,10 +106,11 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/currentAddingAmountShower"
             android:text=""
+            android:textStyle="italic"
             app:layout_constraintTop_toBottomOf="@id/slash"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginStart="@dimen/_20sdp"
             app:layout_constraintBottom_toTopOf="@id/add"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
@@ -110,7 +123,7 @@
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:contentDescription="@string/addwater"
             android:src="@drawable/baseline_add_24"
             app:fabSize="auto"

@@ -40,9 +40,10 @@ public class homeFragment extends Fragment {
         currentAddingAmountShower = view.findViewById(R.id.currentAddingAmountShower);
         if (db.size()==0){
             db.updateAmount(125);
-            currentAddingAmountShower.setText(str(125));
+            currentAddingAmountShower.setText("Amount: "+str(125)+" ml");
+        }else {
+            currentAddingAmountShower.setText("Amount: "+str(db.getCurrAmount())+" ml");
         }
-        init();
 
         current=db.current();
         dailyNeedValue = 2145;
@@ -55,15 +56,12 @@ public class homeFragment extends Fragment {
         progress.setProgress(Math.min(current, dailyNeedValue));
 
         add = view.findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int a = db.getCurrAmount();
-                current = db.current()+db.getCurrAmount();
-                progress.setProgress(Math.min(current, dailyNeedValue));
-                setText(view, str(current), str(dailyNeedValue));
-                db.regularAmountInsertion(db.getCurrAmount());
-            }
+
+        add.setOnClickListener(view12 -> {
+            current = db.current()+db.getCurrAmount();
+            progress.setProgress(Math.min(current, dailyNeedValue));
+            setText(view12, str(current), str(dailyNeedValue));
+            db.regularAmountInsertion(db.getCurrAmount());
         });
 
         cupSelector = view.findViewById(R.id.cupSelector);
@@ -96,7 +94,8 @@ public class homeFragment extends Fragment {
                 String qty = Objects.requireNonNull(quantity.getText()).toString();
                 if (!qty.isEmpty()){
                     db.updateAmount(Integer.parseInt(qty));
-                    currentAddingAmountShower.setText(str(Integer.parseInt(qty)));
+                    currentAddingAmountShower.setText("Amount: "+str(Integer.parseInt(qty))+" ml");
+
                     dialog.dismiss();
                 }
             }
@@ -110,22 +109,5 @@ public class homeFragment extends Fragment {
     private static void setText(View view, String current, String dailyNeed){
         dailyConsumptionCurrent.setText(current);
         dailyConsumptionNeed.setText(dailyNeed);
-    }
-    private void init(){
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        prev= LocalDate.parse("2023-06-01", dateFormatter);
-        LocalDate currDate = LocalDate.now();
-        if (prev.getYear()<currDate.getYear()){
-            db.dailyFinalAmount(current, prev.toString());
-            prev = currDate;
-        }else if (prev.getMonthValue()<currDate.getMonthValue()){
-            db.dailyFinalAmount(current, prev.toString());
-            prev = currDate;
-        }else if (prev.getDayOfMonth() < currDate.getDayOfMonth()){
-            db.dailyFinalAmount(current, prev.toString());
-            prev = currDate;
-        }else {
-            return;
-        }
     }
 }
