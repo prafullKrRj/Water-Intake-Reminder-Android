@@ -27,4 +27,7 @@
     <string name="openDrawer">Open Navigation Drawer</string>
     <string name="closeDrawer">Close Navigation Drawer</string>
     <string name="white">FFFFFF</string>
+    <string name="quote1">"Water is the only drink for a wise man."</string>
+    <string name="quote1Author">                -Henry David Thoreau</string>
+    <string name="introText">Let us be your companion on this journey towards a well-hydrated lifestyle.</string>
 </resources>

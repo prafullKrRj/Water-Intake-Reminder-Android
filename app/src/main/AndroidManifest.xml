@@ -13,7 +13,19 @@
         android:theme="@style/Theme.WaterIntakeReminder"
         tools:targetApi="31">
         <activity
+            android:name=".onBoardings.onBoardingWeather"
+            android:exported="false" />
+        <activity
+            android:name=".onBoardings.onBoardingActivityLevel"
+            android:exported="false" />
+        <activity
+            android:name=".onBoardings.onBoardingNameAndGender"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".onBoardings.mainOnBoardingSplash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

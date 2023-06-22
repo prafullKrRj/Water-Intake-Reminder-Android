@@ -1,0 +1,16 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#4AC7EF" /> <!-- Set the desired fill color here -->
+        </shape>
+    </item>
+    <item
+        android:left="@dimen/_2sdp"
+        android:top="@dimen/_2sdp"
+        android:right="@dimen/_2sdp"
+        android:bottom="@dimen/_2sdp">
+    <shape android:shape="oval">
+        <solid android:color="#FFFFFF" /> <!-- Set the desired background color here -->
+    </shape>
+</item>
+    </layer-list>
