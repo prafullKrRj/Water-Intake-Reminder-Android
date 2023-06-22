@@ -20,7 +20,7 @@ public class mainOnBoardingSplash extends AppCompatActivity {
         Button btn = findViewById(R.id.btn);
         btn.setBackgroundColor(Color.parseColor("#4AC7EF"));
         btn.setOnClickListener(view -> {
-            Intent intent = new Intent(mainOnBoardingSplash.this, MainActivity.class);
+            Intent intent = new Intent(mainOnBoardingSplash.this, onBoardingNameAndGender.class);
             startActivity(intent);
         });
         ImageView tog = findViewById(R.id.toggle);

@@ -5,5 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".onBoardings.onBoardingWeight">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_35sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ring_completed"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp">
+
+        </ImageView>
+        <ImageView
+            android:src="@drawable/ring_completed"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_4sdp">
+
+        </ImageView>
+        <ImageView
+            android:src="@drawable/ring"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_4sdp">
+
+        </ImageView>
+        <ImageView
+            android:src="@drawable/ring"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_4sdp">
+
+        </ImageView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_marginTop="@dimen/_100sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/your_weight"
+        android:textSize="@dimen/_25ssp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+    <LinearLayout
+        android:id="@+id/linear"
+        app:layout_constraintTop_toBottomOf="@id/weightTextView"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/weighingMachineImage"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:src="@drawable/weighing"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp">
+        </ImageView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

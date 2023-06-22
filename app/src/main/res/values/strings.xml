@@ -30,4 +30,10 @@
     <string name="quote1">"Water is the only drink for a wise man."</string>
     <string name="quote1Author">                -Henry David Thoreau</string>
     <string name="introText">Let us be your companion on this journey towards a well-hydrated lifestyle.</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="next">Next</string>
+    <string name="your_weight">Your Weight</string>
 </resources>
