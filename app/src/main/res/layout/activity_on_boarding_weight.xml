@@ -85,7 +85,7 @@
 
         <com.shawnlin.numberpicker.NumberPicker
             android:id="@+id/numberPicker"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_50sdp"
             app:np_dividerColor="#52000000"

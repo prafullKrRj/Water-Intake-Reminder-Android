@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Water Intake Reminder</string>
+    <string name="selected_card_view">#244AC7EF</string>
+    <string name="card_view">#80D9D9D9</string>
     <string name="addwater">addWater</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -46,4 +48,9 @@
     <string name="loading">Loading</string>
     <string name="updating">Updating...</string>
     <string name="your_daily_goal">Your Daily Goal</string>
+    <string name="enter_your_name">*Enter your Name</string>
+    <string name="sedentary_quote">Gentle activity with minimal movement, promoting exercise in a seated or stationary position.</string>
+    <string name="light_quote">Mild physical exertion that increases heart rate and promotes movement without significant strain.</string>
+    <string name="moderate_quote">Moderate level of physical exertion that elevates heart rate and breathing, contributing to overall fitness and well-being.</string>
+    <string name="high_quote">Intense physical effort that challenges the body, pushing limits and promoting significant cardiovascular and muscular engagement.</string>
 </resources>

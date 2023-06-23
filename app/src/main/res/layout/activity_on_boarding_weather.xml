@@ -122,13 +122,55 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/lowTemperature"
+            android:id="@+id/highTemperature"
             android:layout_width="match_parent"
             android:clickable="false"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardBackgroundColor="#80D9D9D9"
             android:layout_height="@dimen/_80sdp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:id="@+id/imageView1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:src="@drawable/baseline_whatshot_24"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp">
+
+                </ImageView>
+                <TextView
+                    android:id="@+id/hot"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/imageView1"
+                    android:textSize="@dimen/_16ssp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_21sdp"
+                    android:text="Hot"
+                    android:fontFamily="@font/comic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <ImageView
+                    android:id="@+id/hotToggle"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:src="@drawable/baseline_check_circle_24"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp">
+                </ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/moderateTemperature"
@@ -138,15 +180,99 @@
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardBackgroundColor="#80D9D9D9"
             android:layout_height="@dimen/_80sdp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:id="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:src="@drawable/baseline_brightness_medium_24"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp">
+
+                </ImageView>
+                <TextView
+                    android:id="@+id/moderate"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/imageView2"
+                    android:textSize="@dimen/_16ssp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_21sdp"
+                    android:text="Moderate"
+                    android:fontFamily="@font/comic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <ImageView
+                    android:id="@+id/moderateToggleWeather"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:src="@drawable/baseline_check_circle_24"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp">
+                </ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/highTemperature"
+            android:id="@+id/lowTemperature"
             android:layout_marginTop="@dimen/_1sdp"
             android:layout_width="match_parent"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardBackgroundColor="#80D9D9D9"
             android:layout_height="@dimen/_80sdp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:id="@+id/imageView3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:src="@drawable/baseline_severe_cold_24"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp">
+
+                </ImageView>
+                <TextView
+                    android:id="@+id/cool"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/imageView3"
+                    android:textSize="@dimen/_16ssp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_21sdp"
+                    android:text="Cool"
+                    android:fontFamily="@font/comic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <ImageView
+                    android:id="@+id/coldToggle"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:src="@drawable/baseline_check_circle_24"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp">
+                </ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

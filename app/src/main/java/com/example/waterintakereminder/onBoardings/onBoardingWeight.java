@@ -20,23 +20,21 @@ public class onBoardingWeight extends AppCompatActivity {
     FloatingActionButton prevButtonWeight;
     NumberPicker numberPicker;
     CardView kg, lbs;
+    private boolean kiloGram = true;
+    private int weight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding_weight);
-
-        nextButtonWeight = findViewById(R.id.nextButtonWeight);
-        prevButtonWeight = findViewById(R.id.prevButtonWeight);
-        prevButtonWeight.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
-        numberPicker = findViewById(R.id.numberPicker);
-        kg = findViewById(R.id.kg);
-        kg.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
-        lbs = findViewById(R.id.lbs);
-        lbs.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
+        init();
+        numberPicker.setMaxValue(1000);
+        numberPicker.setMinValue(1);
+        weight = numberPicker.getValue();
 
         nextButtonWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                weight = numberPicker.getValue();
                 Intent intent = new Intent(onBoardingWeight.this, onBoardingActivityLevel.class);
                 startActivity(intent);
             }
@@ -51,6 +49,7 @@ public class onBoardingWeight extends AppCompatActivity {
         kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                kiloGram = true;
                 kg.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
                 lbs.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
             }
@@ -58,12 +57,22 @@ public class onBoardingWeight extends AppCompatActivity {
         lbs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lbs.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
-                kg.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
+                kiloGram = false;
+               lbs.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
+               kg.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
             }
         });
     }
-
+    private void init(){
+        nextButtonWeight = findViewById(R.id.nextButtonWeight);
+        prevButtonWeight = findViewById(R.id.prevButtonWeight);
+        prevButtonWeight.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
+        numberPicker = findViewById(R.id.numberPicker);
+        kg = findViewById(R.id.kg);
+        kg.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
+        lbs = findViewById(R.id.lbs);
+        lbs.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
+    }
     @Override
     public void onBackPressed() {
 

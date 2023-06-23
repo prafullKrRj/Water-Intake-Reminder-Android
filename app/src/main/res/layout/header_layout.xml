@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_height="@dimen/_150sdp"
+    android:layout_height="wrap_content"
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
@@ -22,5 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:text="ram ram" />
+    <TextView
+        android:text="@string/weather_quote"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+    </TextView>
 </LinearLayout>

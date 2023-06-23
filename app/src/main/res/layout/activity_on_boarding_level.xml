@@ -109,7 +109,38 @@
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
                         android:layout_height="@dimen/_80sdp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/sedentaryQuote"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_21sdp"
+                                android:text="@string/sedentary_quote"
+                                android:layout_width="@dimen/_180sdp"
+                                android:layout_height="wrap_content">
+                            </TextView>
+                            <ImageView
+                                android:id="@+id/sedentaryToggle"
+                                android:visibility="visible"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:src="@drawable/baseline_check_circle_24"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp">
+                            </ImageView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
+
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/lightActivity"
                         android:layout_marginTop="@dimen/_1sdp"
@@ -118,7 +149,38 @@
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
                         android:layout_height="@dimen/_80sdp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/lightQuote"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_21sdp"
+                                android:text="@string/light_quote"
+                                android:layout_width="@dimen/_180sdp"
+                                android:layout_height="wrap_content">
+                            </TextView>
+                            <ImageView
+                                android:id="@+id/lightToggle"
+                                android:visibility="invisible"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:src="@drawable/baseline_check_circle_24"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp">
+                            </ImageView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
+
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/moderateActivity"
                         android:layout_marginTop="@dimen/_1sdp"
@@ -127,6 +189,36 @@
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
                         android:layout_height="@dimen/_80sdp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/moderateQuote"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_21sdp"
+                                android:text="@string/moderate_quote"
+                                android:layout_width="@dimen/_180sdp"
+                                android:layout_height="wrap_content">
+                            </TextView>
+                            <ImageView
+                                android:id="@+id/moderateToggle"
+                                android:visibility="invisible"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:src="@drawable/baseline_check_circle_24"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp">
+                            </ImageView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/highActivity"
@@ -136,6 +228,36 @@
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
                         android:layout_height="@dimen/_80sdp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/highQuote"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_21sdp"
+                                android:text="@string/high_quote"
+                                android:layout_width="@dimen/_180sdp"
+                                android:layout_height="wrap_content">
+                            </TextView>
+                            <ImageView
+                                android:id="@+id/highToggle"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:src="@drawable/baseline_check_circle_24"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp">
+                            </ImageView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </ScrollView>
