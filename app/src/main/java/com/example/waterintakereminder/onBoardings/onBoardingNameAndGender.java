@@ -1,6 +1,9 @@
 package com.example.waterintakereminder.onBoardings;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class onBoardingNameAndGender extends AppCompatActivity {
     TextInputEditText nameEditText;
-    Button nextButtonName;
+    ExtendedFloatingActionButton nextButtonName;
     FloatingActionButton prevButtonName;
     ImageView imageBoy, imageGirl;
     TextView maleTextView, femaleTextView;
@@ -27,6 +30,7 @@ public class onBoardingNameAndGender extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         nextButtonName = findViewById(R.id.nextButtonName);
         prevButtonName = findViewById(R.id.prevButtonName);
+        prevButtonName.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
         imageBoy = findViewById(R.id.imageBoy);
         imageGirl = findViewById(R.id.imageGirl);
         maleTextView = findViewById(R.id.maleTextView);

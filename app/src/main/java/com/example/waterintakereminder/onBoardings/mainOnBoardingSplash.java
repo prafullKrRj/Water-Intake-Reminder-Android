@@ -23,8 +23,12 @@ public class mainOnBoardingSplash extends AppCompatActivity {
             Intent intent = new Intent(mainOnBoardingSplash.this, onBoardingNameAndGender.class);
             startActivity(intent);
         });
-        ImageView tog = findViewById(R.id.toggle);
        // tog.setColorFilter(Color.parseColor("#ff3564"));
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }

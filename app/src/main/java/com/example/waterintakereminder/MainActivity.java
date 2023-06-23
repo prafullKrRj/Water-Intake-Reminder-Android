@@ -169,4 +169,8 @@ public class MainActivity extends AppCompatActivity {
         reminderToggleToolBar.setImageDrawable(null);
     }
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 }

@@ -36,4 +36,14 @@
     <string name="female">Female</string>
     <string name="next">Next</string>
     <string name="your_weight">Your Weight</string>
+    <string name="weight_quote">The more the weight the more water you need.</string>
+    <string name="kg">Kg</string>
+    <string name="lbs">lbs</string>
+    <string name="activity_level">Activity Level</string>
+    <string name="activity_level_quote">The more you burn your calories the more you need fluids to stay hydrated.</string>
+    <string name="weather">Weather</string>
+    <string name="weather_quote">The more the temperature you live in the more you need fluids to stay hydrated.</string>
+    <string name="loading">Loading</string>
+    <string name="updating">Updating...</string>
+    <string name="your_daily_goal">Your Daily Goal</string>
 </resources>
