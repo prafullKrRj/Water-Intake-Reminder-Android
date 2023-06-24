@@ -9,21 +9,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.R;
+import com.example.waterintakereminder.Database.userDetails;
+import com.example.waterintakereminder.onBoardings.CorneredDialogCupSelector;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 import com.yangp.ypwaveview.YPWaveView;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 
 public class homeFragment extends Fragment {
     private FloatingActionButton cupSelector, add;
     private LocalDate prev;
+    private static boolean flag = false;
     private YPWaveView progress;
     private int glassValue, dailyNeedValue, current;
     protected static MaterialTextView dailyConsumptionCurrent, dailyConsumptionNeed, currentAddingAmountShower;
@@ -37,6 +41,10 @@ public class homeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         db = new DBHandler(getContext());
+        /*if (!flag){
+            db.insertUserDetails();
+            flag = true;
+        }*/
         currentAddingAmountShower = view.findViewById(R.id.currentAddingAmountShower);
         if (db.size()==0){
             db.updateAmount(125);
@@ -73,10 +81,9 @@ public class homeFragment extends Fragment {
 
 
     private void showDialogCupSelector(){
-        Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.cup_selector_dialog_box);
+        CorneredDialogCupSelector dialog = new CorneredDialogCupSelector(getContext());
         dialog.setCancelable(false);
-
+        dialog.show();
         TextInputEditText quantity = dialog.findViewById(R.id.quantity);
 
         TextView cancelButton = dialog.findViewById(R.id.cancel_button);
@@ -95,7 +102,6 @@ public class homeFragment extends Fragment {
                 if (!qty.isEmpty()){
                     db.updateAmount(Integer.parseInt(qty));
                     currentAddingAmountShower.setText("Amount: "+str(Integer.parseInt(qty))+" ml");
-
                     dialog.dismiss();
                 }
             }

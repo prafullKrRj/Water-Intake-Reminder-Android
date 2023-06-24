@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_200sdp"
     tools:ignore="UseCompoundDrawables">
 
-    <ImageView
-        android:paddingTop="@dimen/_50sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:src="@drawable/ic_launcher_background"
-        android:contentDescription="image">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:text="ram ram" />
-    <TextView
-        android:text="@string/weather_quote"
-        android:layout_marginTop="@dimen/_50sdp"
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_centerInParent="true"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/water_header_layout"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent">
+    </com.airbnb.lottie.LottieAnimationView>
+    <LinearLayout
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/rounded"
+            android:src="@drawable/logo"
+            app:riv_corner_radius="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
 
-    </TextView>
-</LinearLayout>
+        </com.makeramen.roundedimageview.RoundedImageView>
+        <TextView
+            android:id="@+id/userNameNavigationDrawer"
+            android:text=""
+            android:fontFamily="@font/comic"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
+
+</RelativeLayout>

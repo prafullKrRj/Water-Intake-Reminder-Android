@@ -91,7 +91,7 @@
             android:layout_height="wrap_content">
 
             <ScrollView
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintBottom_toTopOf="@id/prevButtonActivity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -108,24 +108,41 @@
                         app:cardUseCompatPadding="true"
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
-                        android:layout_height="@dimen/_80sdp">
+                        android:layout_height="wrap_content">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:id="@+id/sedentaryQuote"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:id="@+id/sedentaryLinear"
+                                android:padding="@dimen/_4sdp"
+                                android:orientation="vertical"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
-                                android:textSize="@dimen/_10ssp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginEnd="@dimen/_21sdp"
-                                android:text="@string/sedentary_quote"
-                                android:layout_width="@dimen/_180sdp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-                            </TextView>
+                                <TextView
+                                    android:text="Sedentary"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:textSize="@dimen/_13ssp"
+                                    android:fontFamily="@font/comic"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                </TextView>
+                                <TextView
+                                    android:id="@+id/sedentaryQuote"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_21sdp"
+                                    android:text="@string/sedentary_quote"
+                                    android:layout_width="@dimen/_180sdp"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+                            </LinearLayout>
+
                             <ImageView
                                 android:id="@+id/sedentaryToggle"
                                 android:visibility="visible"
@@ -148,24 +165,44 @@
                         app:cardUseCompatPadding="true"
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
-                        android:layout_height="@dimen/_80sdp">
+                        android:layout_height="wrap_content">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:id="@+id/lightQuote"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:id="@+id/lightLinear"
+                                android:padding="@dimen/_4sdp"
+                                android:orientation="vertical"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
-                                android:textSize="@dimen/_10ssp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginEnd="@dimen/_21sdp"
-                                android:text="@string/light_quote"
-                                android:layout_width="@dimen/_180sdp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
+                            <TextView
+                                android:text="Light Activity"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:textSize="@dimen/_13ssp"
+                                android:fontFamily="@font/comic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
                             </TextView>
+                                <TextView
+                                    android:id="@+id/lightQuote"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_21sdp"
+                                    android:text="@string/light_quote"
+                                    android:layout_width="@dimen/_180sdp"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+                            </LinearLayout>
+
                             <ImageView
                                 android:id="@+id/lightToggle"
                                 android:visibility="invisible"
@@ -188,11 +225,29 @@
                         app:cardUseCompatPadding="true"
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
-                        android:layout_height="@dimen/_80sdp">
+                        android:layout_height="wrap_content">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:padding="@dimen/_4sdp"
+                                android:id="@+id/moderateLinear"
+                                android:orientation="vertical"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            <TextView
+                                android:text="Moderate Activity"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:textSize="@dimen/_13ssp"
+                                android:fontFamily="@font/comic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                            </TextView>
                             <TextView
                                 android:id="@+id/moderateQuote"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -206,6 +261,7 @@
                                 android:layout_width="@dimen/_180sdp"
                                 android:layout_height="wrap_content">
                             </TextView>
+                            </LinearLayout>
                             <ImageView
                                 android:id="@+id/moderateToggle"
                                 android:visibility="invisible"
@@ -227,11 +283,29 @@
                         app:cardUseCompatPadding="true"
                         app:cardCornerRadius="@dimen/_10sdp"
                         app:cardBackgroundColor="#80D9D9D9"
-                        android:layout_height="@dimen/_80sdp">
+                        android:layout_height="wrap_content">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:id="@+id/highLinear"
+                                android:padding="@dimen/_4sdp"
+                                android:orientation="vertical"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            <TextView
+                                android:text="High Activity"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:textSize="@dimen/_13ssp"
+                                android:fontFamily="@font/comic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                            </TextView>
                             <TextView
                                 android:id="@+id/highQuote"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -245,6 +319,7 @@
                                 android:layout_width="@dimen/_180sdp"
                                 android:layout_height="wrap_content">
                             </TextView>
+                            </LinearLayout>
                             <ImageView
                                 android:id="@+id/highToggle"
                                 app:layout_constraintTop_toTopOf="parent"

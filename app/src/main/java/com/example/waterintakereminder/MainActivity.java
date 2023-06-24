@@ -4,22 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.utils.widget.ImageFilterButton;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.core.view.GravityCompat;
-import androidx.core.widget.ImageViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,13 +19,21 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.Fragments.SettingsFragment;
 import com.example.waterintakereminder.Fragments.alarmManagerFragment;
 import com.example.waterintakereminder.Fragments.analyticsFragment;
 import com.example.waterintakereminder.Fragments.HistoryManager.historyFragment;
+import com.example.waterintakereminder.Fragments.drawerFragments.aboutFragment;
 import com.example.waterintakereminder.Fragments.homeManager.homeFragment;
+import com.example.waterintakereminder.onBoardings.CorneredDialogUnits;
+import com.example.waterintakereminder.onBoardings.CorneredDialogWeight;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.makeramen.roundedimageview.RoundedImageView;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -42,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean isToggled = false;
     private ImageButton reminderToggleToolBar;
     private ImageView logoOnToolBar;
-    private TextView textViewToolBar;
+    private TextView textViewToolBar, userNameNavigationDrawer;
+    private RoundedImageView roundedImageView;
+
+    private String newWeight;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
         logoOnToolBar.setImageResource(R.drawable.logo);
         reminderToggleToolBar = findViewById(R.id.reminderToggleToolBar);
         reminderToggleToolBar.setImageResource(R.drawable.baseline_alarm_on_24);
-
-
         drawerLayout = findViewById(R.id.navigationDrawer);
+
+        DBHandler dbHandler = new DBHandler(this);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -68,12 +72,34 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
 
         NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.inflateMenu(R.menu.drawer_layout_menu);
+        userNameNavigationDrawer = navigationView.getHeaderView(0).findViewById(R.id.userNameNavigationDrawer);
+        userNameNavigationDrawer.setText(dbHandler.getUserValues().get(0));
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (id==R.id.about){
-                    toHistoryFragment();
+                if (id==R.id.settings){
+                    changeFragment(new SettingsFragment());
+                    textViewToolBar.setText("Settings");
+                    reminderToggleToolBar.setVisibility(View.INVISIBLE);
+                }
+                else if (id==R.id.Statistics){
+                    toAnalyticsFragment();
+                }
+                else if (id==R.id.changeUnitsDrawer){
+                    changeUnit();
+                }
+                else if (id==R.id.changeWeightDrawer){
+                    changeWeight();
+                }
+                else if (id==R.id.shareDrawer){
+
+                }
+                else if (id==R.id.aboutDrawer){
+                    changeFragment(new aboutFragment());
+                    textViewToolBar.setText("About");
+                    reminderToggleToolBar.setVisibility(View.INVISIBLE);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -98,9 +124,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-            if (id==R.id.settings){
-                toSettingsFragment();
-            }else if (id==R.id.analytics) {
+            if (id==R.id.analytics) {
                 toAnalyticsFragment();
             }
             else if (id==R.id.alarmManager){
@@ -117,15 +141,33 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+        logoOnToolBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
-     /*   ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.openDrawer,
-                R.string.closeDrawer);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();*/
+    }
+
+    private void changeUnit() {
+        CorneredDialogUnits dialog = new CorneredDialogUnits(this);
+        dialog.setCancelable(false);
+        dialog.show();
+        TextView cancel = dialog.findViewById(R.id.cancel_button_weight);
+        TextView ok = dialog.findViewById(R.id.okButtonWeightDialogBox);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
@@ -159,18 +201,39 @@ public class MainActivity extends AppCompatActivity {
         changeFragment(new analyticsFragment());
         textViewToolBar.setText("Analytics");
         reminderToggleToolBar.setImageDrawable(null);
-    }private void toSettingsFragment(){
-        changeFragment(new SettingsFragment());
-        textViewToolBar.setText("Settings");
-        reminderToggleToolBar.setImageDrawable(null);
-    }private void toAlarmManagerFragment(){
+    }
+    private void toAlarmManagerFragment(){
         changeFragment(new alarmManagerFragment());
         textViewToolBar.setText("Reminders");
         reminderToggleToolBar.setImageDrawable(null);
     }
+    private void changeWeight(){
+        CorneredDialogWeight dialog = new CorneredDialogWeight(this);
+        dialog.setCancelable(false);
+        dialog.show();
+        TextView cancel = dialog.findViewById(R.id.cancel_button_weight);
+        TextView ok = dialog.findViewById(R.id.okButtonWeightDialogBox);
+        TextInputEditText weight = dialog.findViewById(R.id.newWeight);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!Objects.requireNonNull(weight.getText()).toString().isEmpty()){
+                    newWeight = weight.getText().toString();
+
+                    dialog.dismiss();
+                }
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {
-        finishAffinity();
+        super.onBackPressed();
     }
 }

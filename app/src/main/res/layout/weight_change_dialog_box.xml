@@ -5,18 +5,28 @@
     android:background="@drawable/dialog_box_shape"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="@dimen/_10sdp"
         android:padding="@dimen/_5sdp"
         android:orientation="horizontal"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/glass_type"
+            android:id="@+id/weighingWeightDialogBox"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/field1"
+            android:src="@drawable/weighing"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp">
         </ImageView>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/field1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/weighingWeightDialogBox"
             android:gravity="center_vertical"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_50sdp"
@@ -29,35 +39,36 @@
             app:boxCornerRadiusTopStart="15dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/quantity"
+                android:id="@+id/newWeight"
                 android:maxLength="4"
                 android:inputType="numberSigned"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="ml">
+                android:hint="weight">
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/ok"
+            android:id="@+id/okButtonWeightDialogBox"
             android:padding="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/ok"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </TextView>
         <TextView
-            android:id="@+id/cancel_button"
+            android:id="@+id/cancel_button_weight"
             android:padding="@dimen/_10sdp"
-            app:layout_constraintRight_toLeftOf="@id/ok"
+            android:clickable="true"
+            app:layout_constraintRight_toLeftOf="@id/okButtonWeightDialogBox"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/cancel"
             android:layout_width="wrap_content"

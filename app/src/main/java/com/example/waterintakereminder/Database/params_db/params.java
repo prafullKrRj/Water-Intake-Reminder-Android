@@ -13,4 +13,12 @@ public class params {
 
     public static final String TABLE_AMOUNT = "currAmount";
     public static final String AMOUNT_AMOUNT_TABLE = "amount";
+    public static final String DAILY_INTAKE_TABLE = "dailyIntake";
+    public static final int id = 1;
+    public static final String GENDER = "gender";
+    public static final String USERNAME = "username";
+    public static final String WEIGHT = "weight";
+    public static final String WEIGHT_UNIT = "unit";
+    public static final String ACTIVITY_LEVEL = "activity";
+    public static final String WEATHER = "weather";
 }

@@ -7,10 +7,11 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.waterintakereminder.R;
+import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -29,6 +30,7 @@ public class onBoardingNameAndGender extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding_name_gender);
+        userDetails details = new userDetails();
         init();
         imageBoy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +61,8 @@ public class onBoardingNameAndGender extends AppCompatActivity {
                     TextView warningName = findViewById(R.id.warningName);
                     warningName.setText(R.string.enter_your_name);
                 }else{
+                    details.setName(nameEditText.getText().toString());
+                    details.setGender(gender);
                     Intent intent = new Intent(onBoardingNameAndGender.this, onBoardingWeight.class);
                     startActivity(intent);
                 }

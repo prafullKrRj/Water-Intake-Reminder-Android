@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.waterintakereminder.R;
+import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -19,10 +20,12 @@ public class onBoardingActivityLevel extends AppCompatActivity {
     CardView sedentaryActivity, lightActivity, moderateActivity, highActivity;
     ImageView check1, check2, check3, check4;
     private int clicked=1;
+    private String activity = "sedentary";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding_level);
+        userDetails details = new userDetails();
         nextButtonActivity = findViewById(R.id.nextButtonActivity);
         prevButtonActivity = findViewById(R.id.prevButtonActivity);
         sedentaryActivity = findViewById(R.id.sedentaryActivity);
@@ -40,6 +43,7 @@ public class onBoardingActivityLevel extends AppCompatActivity {
         nextButtonActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                details.setDailyActivity(activity);
                 Intent intent = new Intent(onBoardingActivityLevel.this, onBoardingWeather.class);
                 startActivity(intent);
             }
@@ -55,7 +59,7 @@ public class onBoardingActivityLevel extends AppCompatActivity {
         sedentaryActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clicked = 1;
+                activity = "sedentary";
                 setColor(sedentaryActivity, "#244AC7EF", "#80D9D9D9", highActivity, lightActivity, moderateActivity);
                 show(check1, check2, check3, check4);
             }
@@ -63,7 +67,7 @@ public class onBoardingActivityLevel extends AppCompatActivity {
         moderateActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clicked = 3;
+                activity = "moderate";
                 setColor(moderateActivity, "#244AC7EF", "#80D9D9D9", highActivity, lightActivity, sedentaryActivity);
                 show(check3, check1, check2, check4);
             }
@@ -71,7 +75,7 @@ public class onBoardingActivityLevel extends AppCompatActivity {
         highActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clicked = 4;
+                activity = "high";
                 setColor(highActivity, "#244AC7EF", "#80D9D9D9", sedentaryActivity, lightActivity, moderateActivity);
                 show(check4, check1, check3, check2);
             }
@@ -79,7 +83,7 @@ public class onBoardingActivityLevel extends AppCompatActivity {
         lightActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clicked = 2;
+                activity = "light";
                 setColor(lightActivity, "#244AC7EF", "#80D9D9D9", highActivity, sedentaryActivity, moderateActivity);
                 show(check2, check1, check3, check4);
             }

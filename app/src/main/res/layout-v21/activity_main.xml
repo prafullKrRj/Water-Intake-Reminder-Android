@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
@@ -62,23 +63,24 @@
             android:layout_height="match_parent">
 
         </FrameLayout>
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavView"
-                android:layout_alignParentBottom="true"
-                app:itemHorizontalTranslationEnabled="false"
-                app:itemTextAppearanceActive="@style/BottomNavigationTextStyle"
-                app:itemTextAppearanceInactive="@style/BottomNavigationTextStyle"
-                app:labelVisibilityMode="labeled"
-                android:layout_gravity="bottom"
-                app:backgroundTint="#C442C5EE"
-                android:background="#C442C5EE"
-                app:itemIconSize="@dimen/_18sdp"
-                app:menu="@menu/nav_bar"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_width="match_parent"
-                tools:ignore="VisualLintBottomNav">
 
-            </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+            android:id="@+id/bottomNavView"
+            android:layout_alignParentBottom="true"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemTextAppearanceActive="@style/BottomNavigationTextStyle"
+            app:itemTextAppearanceInactive="@style/BottomNavigationTextStyle"
+            app:labelVisibilityMode="labeled"
+            android:layout_gravity="bottom"
+            app:backgroundTint="#C442C5EE"
+            android:background="#C442C5EE"
+            app:itemIconSize="@dimen/_23sdp"
+            app:menu="@menu/nav_bar"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent"
+            tools:ignore="VisualLintBottomNav">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </RelativeLayout>
 
@@ -86,18 +88,14 @@
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
     </include>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_layout"
-        app:menu="@menu/nav_items"
-        />
-
+        app:headerLayout="@layout/header_layout" />
 </androidx.drawerlayout.widget.DrawerLayout>

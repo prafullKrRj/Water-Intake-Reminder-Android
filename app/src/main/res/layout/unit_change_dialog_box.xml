@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dialog_box_shape"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/okButtonWeightDialogBox"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:id="@+id/cancel_button_weight"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintRight_toLeftOf="@id/okButtonWeightDialogBox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

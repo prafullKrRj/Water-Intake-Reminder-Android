@@ -3,36 +3,35 @@ package com.example.waterintakereminder.onBoardings;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.waterintakereminder.MainActivity;
+import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.R;
+import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.shawnlin.numberpicker.NumberPicker;
 
 public class onBoardingWeather extends AppCompatActivity {
     ExtendedFloatingActionButton nextButtonWeather;
     FloatingActionButton prevButtonWeather;
     CardView lowTemperature, moderateTemperature, highTemperature;
     ImageView check1, check2, check3;
-    private int selected=1;
+    private String weather="hot";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding_weather);
+        userDetails details = new userDetails();
         prevButtonWeather = findViewById(R.id.prevButtonWeather);
         nextButtonWeather = findViewById(R.id.nextButtonWeather);
         check1 = findViewById(R.id.hotToggle);
         check2 = findViewById(R.id.moderateToggleWeather);
         check3 = findViewById(R.id.coldToggle);
-
-
+        DBHandler dbHandler = new DBHandler(this);
         prevButtonWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +42,7 @@ public class onBoardingWeather extends AppCompatActivity {
         nextButtonWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dbHandler.insertUserDetails();
                 Intent intent = new Intent(onBoardingWeather.this, lastOnboard.class);
                 startActivity(intent);
             }
@@ -56,7 +56,7 @@ public class onBoardingWeather extends AppCompatActivity {
         lowTemperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selected = 3;
+                details.setWeather("low");
                 setColor(lowTemperature, "#244AC7EF", "#80D9D9D9", highTemperature, moderateTemperature);
                 show(check3, check2, check1);
             }
@@ -64,7 +64,7 @@ public class onBoardingWeather extends AppCompatActivity {
        highTemperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selected=1;
+                details.setWeather("high");
                 setColor(highTemperature, "#244AC7EF", "#80D9D9D9", lowTemperature, moderateTemperature);
                 show(check1, check2, check3);
             }
@@ -72,7 +72,7 @@ public class onBoardingWeather extends AppCompatActivity {
        moderateTemperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selected = 2;
+                details.setWeather("moderate");
                 show(check2, check3, check1);
                 setColor(moderateTemperature, "#244AC7EF", "#80D9D9D9", highTemperature, lowTemperature);
             }

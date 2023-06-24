@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.waterintakereminder.R;
+import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shawnlin.numberpicker.NumberPicker;
@@ -26,7 +27,9 @@ public class onBoardingWeight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding_weight);
+        userDetails details = new userDetails();
         init();
+        numberPicker.setValue(60);
         numberPicker.setMaxValue(1000);
         numberPicker.setMinValue(1);
         weight = numberPicker.getValue();
@@ -35,6 +38,8 @@ public class onBoardingWeight extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 weight = numberPicker.getValue();
+                details.setWeight(String.valueOf(weight));
+                details.setWeightUnit((kiloGram) ? "kg" : "lbs");
                 Intent intent = new Intent(onBoardingWeight.this, onBoardingActivityLevel.class);
                 startActivity(intent);
             }
