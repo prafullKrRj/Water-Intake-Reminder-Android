@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +35,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,13 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageView logoOnToolBar;
     private TextView textViewToolBar, userNameNavigationDrawer;
     private RoundedImageView roundedImageView;
-
+    private String selectedChangeUnit = "ml";
     private String newWeight;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         textViewToolBar = findViewById(R.id.textViewToolBar);
@@ -60,9 +65,7 @@ public class MainActivity extends AppCompatActivity {
         reminderToggleToolBar = findViewById(R.id.reminderToggleToolBar);
         reminderToggleToolBar.setImageResource(R.drawable.baseline_alarm_on_24);
         drawerLayout = findViewById(R.id.navigationDrawer);
-
         DBHandler dbHandler = new DBHandler(this);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -156,6 +159,26 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
         TextView cancel = dialog.findViewById(R.id.cancel_button_weight);
         TextView ok = dialog.findViewById(R.id.okButtonWeightDialogBox);
+        CardView cardViewMl = dialog.findViewById(R.id.changeUnitMl);
+        CardView cardViewF = dialog.findViewById(R.id.changeUnitFlOz);
+        cardViewMl.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
+
+        cardViewMl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedChangeUnit = "ml";
+                cardViewMl.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
+                cardViewF.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
+            }
+        });
+        cardViewF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedChangeUnit = "floz";
+                cardViewF.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
+                cardViewMl.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
+            }
+        });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,8 +203,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId==R.id.about){
-            return true;
+            changeFragment(new aboutFragment());
         }else if (itemId==R.id.Weight){
+            changeWeight();
             return true;
         }
         return super.onOptionsItemSelected(item);

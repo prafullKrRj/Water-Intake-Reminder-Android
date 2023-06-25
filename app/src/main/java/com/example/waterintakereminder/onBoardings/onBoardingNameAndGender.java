@@ -15,6 +15,7 @@ import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class onBoardingNameAndGender extends AppCompatActivity {
     TextInputEditText nameEditText;
     ExtendedFloatingActionButton nextButtonName;
     FloatingActionButton prevButtonName;
-    ImageView imageBoy, imageGirl;
+    RoundedImageView imageBoy, imageGirl;
     TextView maleTextView, femaleTextView;
     String gender="male";
     Boolean male;

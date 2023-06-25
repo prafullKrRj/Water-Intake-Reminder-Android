@@ -19,8 +19,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
                 app:cardCornerRadius="@dimen/_7sdp"
+                app:cardUseCompatPadding="true"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_20sdp">
                 <HorizontalScrollView
@@ -32,44 +32,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <com.github.mikephil.charting.charts.BarChart
-                            android:id="@+id/daily"
-                            android:layout_width="@dimen/_400sdp"
-                            android:layout_height="@dimen/_250sdp">
+                            android:id="@+id/hourlyChart"
+                            android:layout_width="@dimen/_450sdp"
+                            android:layout_height="@dimen/_200sdp">
 
                         </com.github.mikephil.charting.charts.BarChart>
                     </LinearLayout>
                 </HorizontalScrollView>
             </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    app:cardUseCompatPadding="true"
-                    app:cardCornerRadius="@dimen/_7sdp">
-                    <HorizontalScrollView
-                        android:scrollbars="none"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:padding="@dimen/_10sdp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <com.github.mikephil.charting.charts.BarChart
-                                android:id="@+id/weekly"
-                                android:layout_width="@dimen/_400sdp"
-                                android:layout_height="@dimen/_200sdp">
-
-                            </com.github.mikephil.charting.charts.BarChart>
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </androidx.cardview.widget.CardView>
-
-
-
-
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+            android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:cardCornerRadius="@dimen/_7sdp"
                 app:cardUseCompatPadding="true"
                 android:layout_marginHorizontal="@dimen/_10sdp"
@@ -82,12 +55,12 @@
                         android:padding="@dimen/_10sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                        <com.github.mikephil.charting.charts.BarChart
-                            android:id="@+id/yearly"
-                            android:layout_width="@dimen/_400sdp"
-                            android:layout_height="@dimen/_250sdp">
+                        <com.github.mikephil.charting.charts.HorizontalBarChart
+                            android:id="@+id/avgChart"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="@dimen/_70sdp">
 
-                        </com.github.mikephil.charting.charts.BarChart>
+                        </com.github.mikephil.charting.charts.HorizontalBarChart>
                     </LinearLayout>
                 </HorizontalScrollView>
             </androidx.cardview.widget.CardView>

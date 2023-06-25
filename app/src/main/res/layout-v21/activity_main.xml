@@ -39,6 +39,7 @@
                 <TextView
                     android:id="@+id/textViewToolBar"
                     android:textColor="@color/white"
+                    android:fontFamily="@font/comic"
                     android:textSize="@dimen/_16ssp"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_gravity="center_vertical"

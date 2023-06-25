@@ -124,14 +124,14 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageBoy"
                     android:src="@drawable/boy"
-                    android:background="@drawable/circular_shape"
+                    app:riv_corner_radius="@dimen/_40sdp"
                     android:scaleType="centerCrop"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp">
-                </ImageView>
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp">
+                </com.makeramen.roundedimageview.RoundedImageView>
                 <TextView
                     android:id="@+id/maleTextView"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -151,14 +151,14 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageGirl"
                     android:src="@drawable/girl"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/circular_shape"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp">
-                </ImageView>
+                    app:riv_corner_radius="@dimen/_40sdp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp">
+                </com.makeramen.roundedimageview.RoundedImageView>
                 <TextView
                     android:id="@+id/femaleTextView"
                     android:layout_marginTop="@dimen/_10sdp"

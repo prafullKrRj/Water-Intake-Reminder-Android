@@ -5,7 +5,46 @@
     android:background="@drawable/dialog_box_shape"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="@dimen/_25sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/changeUnitMl"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_59sdp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/changeUnitFlOz"
+            app:layout_constraintLeft_toLeftOf="parent">
+            <TextView
+                android:layout_gravity="center"
+                android:text="@string/ml"
+                android:textSize="@dimen/_17ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/changeUnitFlOz"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_59sdp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/changeUnitMl">
+            <TextView
+                android:layout_gravity="center"
+                android:text="@string/fl_oz"
+                android:textSize="@dimen/_17ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

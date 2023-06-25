@@ -30,41 +30,74 @@ import androidx.annotation.Nullable;
 
 import com.example.waterintakereminder.Fragments.HistoryManager.RecyclerView.HistoryModel;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
     private int lastAmount;
-
+    public static List<Integer> weeklyAvg = new ArrayList<>();
     public DBHandler(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DB_VERSION);
     }
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String historyTable = "create Table history(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, time TEXT)";
         String analyticsTable = "create Table analytics(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, date TEXT)";
         String amount = "create table currAmount(amount TEXT)";
         String dailyIntake = "create Table dailyIntake(username TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather)";
+        String prevDate = "create Table date(date TEXT)";
         sqLiteDatabase.execSQL(historyTable);
         sqLiteDatabase.execSQL(analyticsTable);
         sqLiteDatabase.execSQL(amount);
         sqLiteDatabase.execSQL(dailyIntake);
+        sqLiteDatabase.execSQL(prevDate);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-    public void dailyFinalAmount(int finalAmount, String date){
+    public void deleteDailyHistory(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int a = db.delete(HISTORY_TABLE, null, null);
+    }
+    public int dailyFinalAmount(String date){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        int finalAmount = 0;
+        List<HistoryModel> historyModels = getHistory();
+        for (int i = 0; i < historyModels.size(); i++) {
+            finalAmount += Integer.parseInt(historyModels.get(i).getAmount());
+        }
         values.put(FINAL_AMOUNT, String.valueOf(finalAmount));
-        values.put(DATE, date);
+        values.put(DATE,date);
         database.insert(ANALYTICS_TABLE, null, values);
-    }
+        weeklyAvg.add(finalAmount);
 
+        if (weeklyAvg.size()>7){
+            weeklyAvg.clear();
+            weeklyAvg.add(finalAmount);
+        }
+        return finalAmount;
+    }
+    public int[] getMonthlyData(){
+        int [] arr = new int[LocalDate.now().lengthOfMonth()];
+        SQLiteDatabase database = this.getReadableDatabase();
+        String select = "SELECT * FROM " + ANALYTICS_TABLE;
+        Cursor cursor = database.rawQuery(select, null);
+        int i=0;
+        if(cursor.moveToFirst()){
+            do{
+               arr[i] = Integer.parseInt(cursor.getString(1));
+               i++;
+            }while(cursor.moveToNext());
+        }
+        return arr;
+    }
     public void regularAmountInsertion(int amount){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -88,14 +121,14 @@ public class DBHandler extends SQLiteOpenHelper {
         List<HistoryModel> list = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
         String select = "SELECT * FROM " + HISTORY_TABLE;
-        Cursor cursor = database.rawQuery(select, null);
+        @SuppressLint("Recycle") Cursor cursor = database.rawQuery(select, null);
 
         if(cursor.moveToFirst()){
             do{
                 HistoryModel contact = new HistoryModel();
                 contact.setAmount(cursor.getString(1));
                 LocalTime time = LocalTime.parse(cursor.getString(2));
-                String timeString = time.getHour()+":"+time.getMinute();
+                String timeString = time.toString().substring(0, 2)+":"+time.toString().substring(3, 5);
                 contact.setTime(timeString);
                 list.add(contact);
             }while(cursor.moveToNext());
@@ -163,6 +196,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return list;
     }
+
     public boolean change(String column, String value){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -170,5 +204,28 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(column, value);
         int rowsAffected = database.update(DAILY_INTAKE_TABLE, values, "id = ?", new String[]{String.valueOf(rowId)});
         return rowsAffected > 0;
+    }
+
+    public void insertDate(String date){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("date", date);
+        database.insert("date", null, values);
+    }
+
+    public String getPrevDate(){
+        String str = "";
+        SQLiteDatabase database = this.getReadableDatabase();
+        String select = "Select * from date";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst()){
+            do {
+                str = cursor.getString(0);
+            }while (cursor.moveToNext());
+        }
+        return str;
+    }
+    public float getWeeklyAvg(){
+        return ((float) weeklyAvg.stream().mapToInt(Integer::intValue).sum()/weeklyAvg.size());
     }
 }

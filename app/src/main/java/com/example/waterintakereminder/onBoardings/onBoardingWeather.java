@@ -15,6 +15,8 @@ import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
+
 public class onBoardingWeather extends AppCompatActivity {
     ExtendedFloatingActionButton nextButtonWeather;
     FloatingActionButton prevButtonWeather;
@@ -43,6 +45,8 @@ public class onBoardingWeather extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dbHandler.insertUserDetails();
+
+                dbHandler.insertDate("2023-06-07");
                 Intent intent = new Intent(onBoardingWeather.this, lastOnboard.class);
                 startActivity(intent);
             }

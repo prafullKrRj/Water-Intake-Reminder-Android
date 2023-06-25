@@ -8,20 +8,26 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.waterintakereminder.Database.DBHandler;
+import com.example.waterintakereminder.Fragments.HistoryManager.RecyclerView.HistoryModel;
 import com.example.waterintakereminder.R;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class analyticsFragment extends Fragment {
-    ArrayList<BarEntry> weeklyEntries;
-    ArrayList<BarEntry> dailyEntries;
-    ArrayList<BarEntry> monthlyEntries;
+
+    ArrayList<BarEntry> hourlyEntries;
+    DBHandler dbHandler;
     public analyticsFragment() {
 
     }
@@ -30,27 +36,65 @@ public class analyticsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_analytics, container, false);
-        weeklyChart(view);
-        dailyChart(view);
+        dbHandler = new DBHandler(getContext());
+        hourlyChart(view);
+        avgChart(view);
         return view;
     }
+    private void avgChart(View view){
+        HorizontalBarChart chart = view.findViewById(R.id.avgChart);
+        ArrayList<BarEntry> weeklyAvg = new ArrayList<>();
+        String [] xValues = {"weekly", "monthly"};
+        weeklyAvg.add(new BarEntry(dbHandler.getWeeklyAvg(), 2));
+        chartFormatter formatter = new chartFormatter(xValues);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(formatter);
+        stopZoom(chart);
 
-
-    private void dailyChart(View view){
-        BarChart daily = view.findViewById(R.id.daily);
-        int [] yValues = new int[24];
+        BarDataSet dataSet = new BarDataSet(weeklyAvg, "weekly Average");
+        dataSet.setColors(Color.parseColor("#3AA6B9"));
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+        BarData data = new BarData(dataSet);
+        chart.setFitBars(true);
+        chart.setData(data);
+        chart.getDescription().setText("");
+        chart.getDescription().setTextSize(0f);
+        chart.animateY(1700);
+    }
+    private void hourlyChart(View view){
+        BarChart hourly = view.findViewById(R.id.hourlyChart);
         String [] xValues = new String[24];
         for (int i = 0; i < 24; i++) {
-            xValues[i] = (i<=12) ? i+" AM" : i%12+" PM";
+            xValues[i] = (i<12) ? ((i<10) ? "0"+i+":00 AM" : i+":00AM") : (i!=12 && i%12<10) ? "0"+i+":00PM" : i+":00PM";
         }
+        getHourlyData();
         chartFormatter formatter = new chartFormatter(xValues);
-        XAxis xAxis = daily.getXAxis();
+        XAxis xAxis = hourly.getXAxis();
         xAxis.setValueFormatter(formatter);
-        stopZoom(daily);
-
+        stopZoom(hourly);
+        BarDataSet dataSet = new BarDataSet(hourlyEntries, "hourly");
+        dataSet.setColors(Color.parseColor("#3AA6B9"));
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+        BarData barData = new BarData(dataSet);
+        hourly.setFitBars(true);
+        hourly.setData(barData);
+        hourly.getDescription().setText("");
+        hourly.getDescription().setTextSize(0f);
+        hourly.animateY(1700);
     }
-    private void getDailyData(){
-
+    private void getHourlyData(){
+        List<HistoryModel> history = dbHandler.getHistory();
+        hourlyEntries = new ArrayList<>();
+        int [] arr = new int[24];
+        for (int i = 0; i < history.size(); i++) {
+            int hour = Integer.parseInt(history.get(i).getTime().substring(0, 2));
+            arr[hour] += Integer.parseInt(history.get(i).getAmount());
+        }
+        for (int i = 0; i < arr.length; i++) {
+            hourlyEntries.add(new BarEntry(i, arr[i]));
+        }
     }
     private void stopZoom(BarChart chart){
         chart.setPinchZoom(false);
@@ -59,36 +103,5 @@ public class analyticsFragment extends Fragment {
         chart.setDragYEnabled(false);
         chart.setScaleXEnabled(false);
         chart.setScaleYEnabled(false);
-    }
-    private void getWeeklyData()
-    {
-        weeklyEntries = new ArrayList<BarEntry>();
-        weeklyEntries.add(new BarEntry(1, 2000));
-        weeklyEntries.add(new BarEntry(2, 1500));
-        weeklyEntries.add(new BarEntry(3, 1500));
-        weeklyEntries.add(new BarEntry(4, 1500));
-        weeklyEntries.add(new BarEntry(5, 1500));
-        weeklyEntries.add(new BarEntry(6, 1500));
-        weeklyEntries.add(new BarEntry(7, 1500));
-    }
-    private void weeklyChart(View view){
-        String[] xValues = new String[] {"", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        chartFormatter formatter = new chartFormatter(xValues);
-        BarChart weekly = view.findViewById(R.id.weekly);
-        stopZoom(weekly);
-        XAxis xAxis = weekly.getXAxis();
-        xAxis.setValueFormatter(formatter);
-        getWeeklyData();
-        BarDataSet dataSet = new BarDataSet(weeklyEntries, "Weekly");
-        dataSet.setColors(Color.parseColor("#3AA6B9"));
-        dataSet.setValueTextColor(Color.BLACK);
-        dataSet.setValueTextSize(12f);
-
-        BarData barData = new BarData(dataSet);
-        weekly.setFitBars(true);
-        weekly.setData(barData);
-        weekly.getDescription().setText("");
-        weekly.getDescription().setTextSize(0f);
-        weekly.animateY(1700);
     }
 }
