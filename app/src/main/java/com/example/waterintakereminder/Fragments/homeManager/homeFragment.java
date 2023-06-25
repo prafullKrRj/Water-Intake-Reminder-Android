@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.R;
 import com.example.waterintakereminder.Database.userDetails;
+import com.example.waterintakereminder.calculateAmount;
 import com.example.waterintakereminder.onBoardings.CorneredDialogCupSelector;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -45,6 +46,7 @@ public class homeFragment extends Fragment {
             db.insertUserDetails();
             flag = true;
         }*/
+        f();
         currentAddingAmountShower = view.findViewById(R.id.currentAddingAmountShower);
         if (db.size()==0){
             db.updateAmount(125);
@@ -54,7 +56,7 @@ public class homeFragment extends Fragment {
         }
 
         current=db.current();
-        dailyNeedValue = 2145;
+
         dailyConsumptionCurrent = view.findViewById(R.id.dailyConsumptionCurrent);
         dailyConsumptionNeed = view.findViewById(R.id.dailyConsumptionNeed);
         setText(view, str(current), str(dailyNeedValue));
@@ -108,7 +110,12 @@ public class homeFragment extends Fragment {
         });
         dialog.show();
     }
-
+    private void f(){
+        List<String> list = db.getUserValues();
+        calculateAmount amount = new calculateAmount(list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6));
+        dailyNeedValue = amount.calculate();
+        Toast.makeText(getContext(), String.valueOf(dailyNeedValue), Toast.LENGTH_SHORT).show();
+    }
     static String str(int val){
         return String.valueOf(val);
     }

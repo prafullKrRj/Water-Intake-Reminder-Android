@@ -44,8 +44,8 @@ public class onBoardingWeather extends AppCompatActivity {
         nextButtonWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                details.setWeather(weather);
                 dbHandler.insertUserDetails();
-
                 dbHandler.insertDate("2023-06-07");
                 Intent intent = new Intent(onBoardingWeather.this, lastOnboard.class);
                 startActivity(intent);

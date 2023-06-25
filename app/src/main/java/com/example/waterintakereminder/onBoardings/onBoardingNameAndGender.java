@@ -20,7 +20,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.Objects;
 
 public class onBoardingNameAndGender extends AppCompatActivity {
-    TextInputEditText nameEditText;
+    TextInputEditText nameEditText, ageEditText;
     ExtendedFloatingActionButton nextButtonName;
     FloatingActionButton prevButtonName;
     RoundedImageView imageBoy, imageGirl;
@@ -58,12 +58,14 @@ public class onBoardingNameAndGender extends AppCompatActivity {
         nextButtonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Objects.requireNonNull(nameEditText.getText()).toString().isEmpty()){
-                    TextView warningName = findViewById(R.id.warningName);
+                if (Objects.requireNonNull(nameEditText.getText()).toString().isEmpty() || Objects.requireNonNull(ageEditText.getText()).toString().isEmpty()){
+                    TextView warningName = findViewById(R.id.warning);
                     warningName.setText(R.string.enter_your_name);
-                }else{
+                }
+                else{
                     details.setName(nameEditText.getText().toString());
                     details.setGender(gender);
+                    details.setAge(ageEditText.getText().toString());
                     Intent intent = new Intent(onBoardingNameAndGender.this, onBoardingWeight.class);
                     startActivity(intent);
                 }
@@ -81,6 +83,7 @@ public class onBoardingNameAndGender extends AppCompatActivity {
     private void init(){
         male = true;
         nameEditText = findViewById(R.id.nameEditText);
+        ageEditText = findViewById(R.id.ageEditText);
         nextButtonName = findViewById(R.id.nextButtonName);
         prevButtonName = findViewById(R.id.prevButtonName);
         prevButtonName.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));

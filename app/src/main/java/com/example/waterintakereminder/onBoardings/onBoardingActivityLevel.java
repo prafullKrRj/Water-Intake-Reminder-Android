@@ -19,7 +19,6 @@ public class onBoardingActivityLevel extends AppCompatActivity {
     FloatingActionButton prevButtonActivity;
     CardView sedentaryActivity, lightActivity, moderateActivity, highActivity;
     ImageView check1, check2, check3, check4;
-    private int clicked=1;
     private String activity = "sedentary";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

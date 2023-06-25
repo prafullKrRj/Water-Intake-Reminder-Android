@@ -2,11 +2,20 @@ package com.example.waterintakereminder.Database;
 
 public class userDetails {
     private static String name;
+    private static String age;
     private static String gender;
     private static String weight;
     private static String weightUnit;
     private static String dailyActivity;
     private static String weather;
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        userDetails.age = age;
+    }
 
     public String getWeather() {
         return weather;

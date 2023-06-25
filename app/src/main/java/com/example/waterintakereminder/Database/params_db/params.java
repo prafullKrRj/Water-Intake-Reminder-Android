@@ -17,6 +17,7 @@ public class params {
     public static final int id = 1;
     public static final String GENDER = "gender";
     public static final String USERNAME = "username";
+    public static final String AGE = "age";
     public static final String WEIGHT = "weight";
     public static final String WEIGHT_UNIT = "unit";
     public static final String ACTIVITY_LEVEL = "activity";

@@ -1,6 +1,7 @@
 package com.example.waterintakereminder.Database;
 
 import static com.example.waterintakereminder.Database.params_db.params.ACTIVITY_LEVEL;
+import static com.example.waterintakereminder.Database.params_db.params.AGE;
 import static com.example.waterintakereminder.Database.params_db.params.AMOUNT_AMOUNT_TABLE;
 import static com.example.waterintakereminder.Database.params_db.params.ANALYTICS_TABLE;
 import static com.example.waterintakereminder.Database.params_db.params.CURRENT_AMOUNT;
@@ -48,7 +49,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String historyTable = "create Table history(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, time TEXT)";
         String analyticsTable = "create Table analytics(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, date TEXT)";
         String amount = "create table currAmount(amount TEXT)";
-        String dailyIntake = "create Table dailyIntake(username TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather)";
+        String dailyIntake = "create Table dailyIntake(username TEXT, age TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather)";
         String prevDate = "create Table date(date TEXT)";
         sqLiteDatabase.execSQL(historyTable);
         sqLiteDatabase.execSQL(analyticsTable);
@@ -172,6 +173,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(USERNAME, new userDetails().getName());
+        values.put(AGE, new userDetails().getAge());
         values.put(GENDER, new userDetails().getGender());
         values.put(WEIGHT, new userDetails().getWeight());
         values.put(WEIGHT_UNIT, new userDetails().getWeightUnit());
@@ -192,6 +194,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 list.add(cursor.getString(3));
                 list.add(cursor.getString(4));
                 list.add(cursor.getString(5));
+                list.add(cursor.getString(6));
             }while (cursor.moveToNext());
         }
         return list;
