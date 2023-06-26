@@ -1,6 +1,5 @@
 package com.example.waterintakereminder.Fragments.homeManager;
 
-import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.R;
-import com.example.waterintakereminder.Database.userDetails;
 import com.example.waterintakereminder.calculateAmount;
-import com.example.waterintakereminder.onBoardings.CorneredDialogCupSelector;
+import com.example.waterintakereminder.Dialogs.CorneredDialogCupSelector;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
@@ -27,6 +24,7 @@ import java.util.Objects;
 
 public class homeFragment extends Fragment {
     private FloatingActionButton cupSelector, add;
+    public static int dailyAmount = 0;
     private LocalDate prev;
     private static boolean flag = false;
     private YPWaveView progress;
@@ -114,7 +112,7 @@ public class homeFragment extends Fragment {
         List<String> list = db.getUserValues();
         calculateAmount amount = new calculateAmount(list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6));
         dailyNeedValue = amount.calculate();
-        Toast.makeText(getContext(), String.valueOf(dailyNeedValue), Toast.LENGTH_SHORT).show();
+        dailyAmount = dailyNeedValue;
     }
     static String str(int val){
         return String.valueOf(val);

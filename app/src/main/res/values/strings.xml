@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Water Intake Reminder</string>
+    <string name="app_name">Aqua Rewa</string>
     <string name="selected_card_view">#244AC7EF</string>
     <string name="card_view">#80D9D9D9</string>
     <string name="addwater">addWater</string>
@@ -55,4 +55,15 @@
     <string name="high_quote">Intense physical effort that challenges the body, pushing limits and promoting significant cardiovascular and muscular engagement.</string>
     <string name="fl_oz">fl oz</string>
     <string name="ml">ml</string>
+    <string name="reminder_settings">Reminder Settings</string>
+    <string name="reminder_schcedule">Reminder Schcedule</string>
+    <string name="reminder_schedule">Reminder Schedule</string>
+    <string name="reminder_sound">Reminder Sound</string>
+    <string name="further_reminder">Further Reminder</string>
+    <string name="general_settings">General Settings</string>
+    <string name="unit">Unit</string>
+    <string name="language">Language</string>
+    <string name="personal_data">Personal Data</string>
+    <string name="others">Others</string>
+    <string name="share">Share</string>
 </resources>

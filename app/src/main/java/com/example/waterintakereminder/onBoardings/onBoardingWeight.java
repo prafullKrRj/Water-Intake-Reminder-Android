@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class onBoardingWeight extends AppCompatActivity {
     FloatingActionButton prevButtonWeight;
     NumberPicker numberPicker;
     CardView kg, lbs;
-    private boolean kiloGram = true;
+    private String weightUnit = "kg";
     private int weight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,15 @@ public class onBoardingWeight extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 weight = numberPicker.getValue();
+                // Get an instance of SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("weight", String.valueOf(weight));
+                editor.putString("weightUnit", weightUnit);
+                editor.apply();
+
                 details.setWeight(String.valueOf(weight));
-                details.setWeightUnit((kiloGram) ? "kg" : "lbs");
+                details.setWeightUnit(weightUnit);
                 Intent intent = new Intent(onBoardingWeight.this, onBoardingActivityLevel.class);
                 startActivity(intent);
             }
@@ -54,7 +62,7 @@ public class onBoardingWeight extends AppCompatActivity {
         kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                kiloGram = true;
+               weightUnit = "kg";
                 kg.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
                 lbs.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
             }
@@ -62,7 +70,7 @@ public class onBoardingWeight extends AppCompatActivity {
         lbs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                kiloGram = false;
+               weightUnit = "lbs";
                lbs.setCardBackgroundColor(Color.parseColor("#244AC7EF"));
                kg.setCardBackgroundColor(Color.parseColor("#80D9D9D9"));
             }

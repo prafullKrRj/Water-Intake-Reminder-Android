@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:forceDarkAllowed="false"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".onBoardings.onBoardingActivityLevel">
@@ -48,6 +50,7 @@
         android:id="@+id/activityTextView"
         android:layout_marginTop="@dimen/_100sdp"
         android:gravity="center"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -73,6 +76,8 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/activityQuote"
+            android:textColor="@color/black"
+
             android:gravity="center"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
@@ -124,6 +129,8 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:text="Sedentary"
+                                    android:textColor="@color/black"
+
                                     android:layout_marginStart="@dimen/_10sdp"
                                     android:textSize="@dimen/_13ssp"
                                     android:fontFamily="@font/comic"
@@ -135,6 +142,8 @@
                                     android:id="@+id/sedentaryQuote"
                                     android:textSize="@dimen/_10ssp"
                                     android:layout_gravity="center_vertical"
+                                    android:textColor="@color/black"
+
                                     android:layout_marginStart="@dimen/_10sdp"
                                     android:layout_marginEnd="@dimen/_21sdp"
                                     android:text="@string/sedentary_quote"
@@ -180,6 +189,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                             <TextView
+                                android:textColor="@color/black"
+
                                 android:text="Light Activity"
                                 android:layout_marginStart="@dimen/_10sdp"
                                 android:textSize="@dimen/_13ssp"
@@ -193,6 +204,8 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintLeft_toLeftOf="parent"
+                                    android:textColor="@color/black"
+
                                     android:textSize="@dimen/_10ssp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/_10sdp"
@@ -244,6 +257,8 @@
                                 android:layout_marginStart="@dimen/_10sdp"
                                 android:textSize="@dimen/_13ssp"
                                 android:fontFamily="@font/comic"
+                                android:textColor="@color/black"
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -255,6 +270,8 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="center_vertical"
+                                android:textColor="@color/black"
+
                                 android:layout_marginStart="@dimen/_10sdp"
                                 android:layout_marginEnd="@dimen/_21sdp"
                                 android:text="@string/moderate_quote"
@@ -300,6 +317,8 @@
                             <TextView
                                 android:text="High Activity"
                                 android:layout_marginStart="@dimen/_10sdp"
+                                android:textColor="@color/black"
+
                                 android:textSize="@dimen/_13ssp"
                                 android:fontFamily="@font/comic"
                                 android:layout_width="wrap_content"
@@ -311,6 +330,8 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
+                                android:textColor="@color/black"
+
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_10sdp"

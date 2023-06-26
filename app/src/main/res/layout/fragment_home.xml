@@ -2,6 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:forceDarkAllowed="false"
+
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:layout_marginBottom="@dimen/_40sdp"
@@ -31,6 +33,7 @@
             android:layout_marginBottom="@dimen/_50sdp"
             app:animatorEnable="true"
             app:behideColor="#520CD9EC"
+            android:textColor="@color/black"
             app:borderColor="#42BBEE"
             app:borderWidthSize="@dimen/_5sdp"
             app:frontColor="#5FD8FD"
@@ -95,6 +98,8 @@
             android:id="@+id/dailyConsumptionNeed"
             app:layout_constraintLeft_toRightOf="@id/slash"
             android:layout_marginTop="@dimen/_30sdp"
+            android:textColor="@color/black"
+
             app:layout_constraintTop_toBottomOf="@id/progress_circular"
             android:text=""
             android:textSize="@dimen/_23ssp"

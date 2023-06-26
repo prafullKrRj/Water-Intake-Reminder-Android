@@ -1,4 +1,4 @@
-package com.example.waterintakereminder.onBoardings;
+package com.example.waterintakereminder.Dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 
 import com.example.waterintakereminder.R;
 
-public class CorneredDialogWeight extends Dialog {
-    public CorneredDialogWeight(@NonNull Context context) {
+public class CorneredDialogUnits extends Dialog {
+
+    public CorneredDialogUnits(@NonNull Context context) {
         super(context);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.weight_change_dialog_box);
+        setContentView(R.layout.unit_change_dialog_box);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 }

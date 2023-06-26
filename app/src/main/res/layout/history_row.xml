@@ -2,6 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:forceDarkAllowed="false"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:cardUseCompatPadding="true"
@@ -12,9 +14,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:background="@color/white"
         android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content">
         <ImageView
+            android:background="@android:color/transparent"
             android:src="@drawable/glass_type"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp">
@@ -29,6 +33,8 @@
             <TextView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/textAmount"
+                android:textColor="@color/black"
+
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -38,6 +44,8 @@
                 android:textStyle="bold" />
             <TextView
                 app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/black"
+
                 android:layout_marginStart="@dimen/_8ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="ml"
@@ -48,29 +56,17 @@
 
             </TextView>
             <TextView
+                android:textColor="@color/black"
+
                 android:id="@+id/textTime"
                 android:layout_gravity="center_vertical"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/deleteButtonHistory"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp" />
-            <ImageButton
-                android:id="@+id/deleteButtonHistory"
-                android:padding="@dimen/_8ssp"
-                android:src="@drawable/baseline_delete_24"
-                app:layout_constraintRight_toRightOf="parent"
-                android:background="@color/white"
-                android:outlineSpotShadowColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                >
-
-            </ImageButton>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

@@ -18,6 +18,7 @@ import static com.example.waterintakereminder.Database.params_db.params.USERNAME
 import static com.example.waterintakereminder.Database.params_db.params.WEATHER;
 import static com.example.waterintakereminder.Database.params_db.params.WEIGHT;
 import static com.example.waterintakereminder.Database.params_db.params.WEIGHT_UNIT;
+import static com.example.waterintakereminder.Database.params_db.params.id;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -49,7 +50,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String historyTable = "create Table history(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, time TEXT)";
         String analyticsTable = "create Table analytics(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, date TEXT)";
         String amount = "create table currAmount(amount TEXT)";
-        String dailyIntake = "create Table dailyIntake(username TEXT, age TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather)";
+        String dailyIntake = "create Table dailyIntake(id String, username TEXT, age TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather)";
         String prevDate = "create Table date(date TEXT)";
         sqLiteDatabase.execSQL(historyTable);
         sqLiteDatabase.execSQL(analyticsTable);
@@ -172,6 +173,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void insertUserDetails(){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put("id", "1");
         values.put(USERNAME, new userDetails().getName());
         values.put(AGE, new userDetails().getAge());
         values.put(GENDER, new userDetails().getGender());
@@ -188,13 +190,13 @@ public class DBHandler extends SQLiteOpenHelper {
         List<String> list = new ArrayList<>();
         if (cursor.moveToNext()){
             do{
-                list.add(cursor.getString(0));
                 list.add(cursor.getString(1));
                 list.add(cursor.getString(2));
                 list.add(cursor.getString(3));
                 list.add(cursor.getString(4));
                 list.add(cursor.getString(5));
                 list.add(cursor.getString(6));
+                list.add(cursor.getString(7));
             }while (cursor.moveToNext());
         }
         return list;
@@ -205,7 +207,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         int rowId = 1;
         values.put(column, value);
-        int rowsAffected = database.update(DAILY_INTAKE_TABLE, values, "id = ?", new String[]{String.valueOf(rowId)});
+        int rowsAffected = database.update(DAILY_INTAKE_TABLE, values, "id = ?", new String[]{"1"});
         return rowsAffected > 0;
     }
 

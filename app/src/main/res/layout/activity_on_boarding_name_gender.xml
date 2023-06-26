@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:forceDarkAllowed="false"
+
     android:scrollbars="none"
     android:layout_height="match_parent"
     tools:context=".onBoardings.onBoardingNameAndGender">
@@ -65,6 +67,7 @@
                 <TextView
                     android:id="@+id/nameTextView"
                     android:text="@string/name"
+                    android:textColor="@color/black"
 
                     android:textSize="@dimen/_25ssp"
                     android:textStyle="bold"
@@ -139,6 +142,8 @@
 
                 <TextView
                     android:text="@string/gender"
+                    android:textColor="@color/black"
+
                     android:textSize="@dimen/_25ssp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
@@ -171,6 +176,8 @@
                             android:text="@string/male"
                             android:textSize="@dimen/_13ssp"
                             android:textStyle="bold"
+                            android:textColor="@color/black"
+
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
@@ -200,6 +207,8 @@
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+
                             android:layout_height="wrap_content">
 
                         </TextView>

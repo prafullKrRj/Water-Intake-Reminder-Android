@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/settings"
-            android:icon="@drawable/baseline_settings_24"
-            android:title="Settings">
-        </item>
-        <item
             android:id="@+id/Statistics"
             android:icon="@drawable/baseline_analytics_24"
             android:title="Statistics">

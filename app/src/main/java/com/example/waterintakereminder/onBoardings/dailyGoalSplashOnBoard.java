@@ -3,8 +3,10 @@ package com.example.waterintakereminder.onBoardings;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,20 +24,30 @@ public class dailyGoalSplashOnBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_goal_splash_on_board);
         TextView textView = findViewById(R.id.dailyGoal);
-        DBHandler handler = new DBHandler(this);
-        List<String> list = handler.getUserValues();
+        DBHandler dbHandler = new DBHandler(this);
+        dbHandler.insertUserDetails();
+        SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("onboarding_completed", true);
+        editor.apply();
+        List<String> list = dbHandler.getUserValues();
+
+        dbHandler.insertDate("2023-06-07");
         calculateAmount amount = new calculateAmount(list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6));
         textView.setText(String.valueOf(amount.calculate()));
         new Handler().postDelayed((Runnable) () -> {
             Intent toHome = new Intent(dailyGoalSplashOnBoard.this, MainActivity.class);
             startActivity(toHome);
-        }, 15000);
+        }, 3000);
         LottieAnimationView anim1 = findViewById(R.id.anim1);
         anim1.setSpeed(.7f);
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(dailyGoalSplashOnBoard.this, onBoardingWeather.class);
-        startActivity(intent);
+
+    }
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return false;
     }
 }

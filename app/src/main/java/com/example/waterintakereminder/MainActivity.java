@@ -1,5 +1,8 @@
 package com.example.waterintakereminder;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +17,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,20 +25,17 @@ import android.widget.TextView;
 
 import com.example.waterintakereminder.Database.DBHandler;
 import com.example.waterintakereminder.Fragments.SettingsFragment;
-import com.example.waterintakereminder.Fragments.alarmManagerFragment;
 import com.example.waterintakereminder.Fragments.analyticsFragment;
 import com.example.waterintakereminder.Fragments.HistoryManager.historyFragment;
 import com.example.waterintakereminder.Fragments.drawerFragments.aboutFragment;
 import com.example.waterintakereminder.Fragments.homeManager.homeFragment;
-import com.example.waterintakereminder.onBoardings.CorneredDialogUnits;
-import com.example.waterintakereminder.onBoardings.CorneredDialogWeight;
+import com.example.waterintakereminder.Dialogs.CorneredDialogUnits;
+import com.example.waterintakereminder.Dialogs.CorneredDialogWeight;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,11 +54,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         textViewToolBar = findViewById(R.id.textViewToolBar);
-        textViewToolBar.setText("Water Intake Reminder");
+        textViewToolBar.setText("Aqua Rewa");
         logoOnToolBar = findViewById(R.id.logoOnToolBar);
         logoOnToolBar.setImageResource(R.drawable.logo);
         reminderToggleToolBar = findViewById(R.id.reminderToggleToolBar);
@@ -73,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 R.string.openDrawer,
                 R.string.closeDrawer);
         drawerLayout.addDrawerListener(toggle);
-
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.inflateMenu(R.menu.drawer_layout_menu);
         userNameNavigationDrawer = navigationView.getHeaderView(0).findViewById(R.id.userNameNavigationDrawer);
@@ -82,13 +79,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (id==R.id.settings){
-                    changeFragment(new SettingsFragment());
-                    textViewToolBar.setText("Settings");
-                    reminderToggleToolBar.setVisibility(View.INVISIBLE);
-                }
-                else if (id==R.id.Statistics){
-                    toAnalyticsFragment();
+                if (id==R.id.Statistics){
+                    changeFragment(new analyticsFragment(), "Stats", INVISIBLE);
                 }
                 else if (id==R.id.changeUnitsDrawer){
                     changeUnit();
@@ -100,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else if (id==R.id.aboutDrawer){
-                    changeFragment(new aboutFragment());
+                    changeFragment(new aboutFragment(), "About", INVISIBLE);
                     textViewToolBar.setText("About");
-                    reminderToggleToolBar.setVisibility(View.INVISIBLE);
+                    reminderToggleToolBar.setVisibility(INVISIBLE);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -128,19 +120,17 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id==R.id.analytics) {
-                toAnalyticsFragment();
+                changeFragment(new analyticsFragment(), "Stats", INVISIBLE);
             }
-            else if (id==R.id.alarmManager){
-                toAlarmManagerFragment();
+            else if (id==R.id.settings){
+                changeFragment(new SettingsFragment(), "Settings", INVISIBLE);
             }
             else if (id==R.id.history){
-                toHistoryFragment();
+                changeFragment(new historyFragment(), "History", INVISIBLE);
             }
             else{
-                changeFragment(new homeFragment());
-                textViewToolBar.setText("Water Intake Reminder");
+                changeFragment(new homeFragment(), "Aqua Rewa", VISIBLE);
                 reminderToggleToolBar.setImageResource((!isToggled) ? R.drawable.baseline_alarm_off_24 : R.drawable.baseline_alarm_on_24);
-
             }
             return true;
         });
@@ -193,43 +183,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.nav_items, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId==R.id.about){
-            changeFragment(new aboutFragment());
-        }else if (itemId==R.id.Weight){
-            changeWeight();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void changeFragment(Fragment fragment){
+    public void changeFragment(Fragment fragment, String text, int visibility){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.container, fragment);
+        textViewToolBar.setText(text);
+        reminderToggleToolBar.setVisibility(visibility);
         ft.commit();
-    }
-    private void toHistoryFragment(){
-        changeFragment(new historyFragment());
-        textViewToolBar.setText("History");
-        reminderToggleToolBar.setImageDrawable(null);
-    }private void toAnalyticsFragment(){
-        changeFragment(new analyticsFragment());
-        textViewToolBar.setText("Analytics");
-        reminderToggleToolBar.setImageDrawable(null);
-    }
-    private void toAlarmManagerFragment(){
-        changeFragment(new alarmManagerFragment());
-        textViewToolBar.setText("Reminders");
-        reminderToggleToolBar.setImageDrawable(null);
     }
     private void changeWeight(){
         CorneredDialogWeight dialog = new CorneredDialogWeight(this);
@@ -249,15 +210,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!Objects.requireNonNull(weight.getText()).toString().isEmpty()){
                     newWeight = weight.getText().toString();
-
+                    changes changes = new changes(getApplicationContext());
+                    changes.changeWeight(newWeight);
                     dialog.dismiss();
                 }
             }
         });
-    }
 
+    }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        finishAffinity();
     }
 }

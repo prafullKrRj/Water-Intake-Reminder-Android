@@ -9,10 +9,11 @@
         android:id="@+id/analytics"
         android:icon="@drawable/baseline_analytics_24"
         tools:ignore="MenuTitle" />
+
     <item
-        android:id="@+id/alarmManager"
-        android:icon="@drawable/baseline_add_alert_24"
-        tools:ignore="MenuTitle"/>
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_24"
+        tools:ignore="MenuTitle" />
     <item
         android:id="@+id/history"
         android:icon="@drawable/baseline_history_24"

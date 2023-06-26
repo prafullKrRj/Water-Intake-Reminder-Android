@@ -31,9 +31,6 @@
             android:name=".onBoardings.dailyGoalSplashOnBoard"
             android:exported="false" />
         <activity
-            android:name=".onBoardings.lastOnboard"
-            android:exported="false" />
-        <activity
             android:name=".onBoardings.onBoardingWeight"
             android:exported="false" />
         <activity

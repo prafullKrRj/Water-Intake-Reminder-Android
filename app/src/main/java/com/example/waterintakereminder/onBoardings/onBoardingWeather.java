@@ -15,12 +15,10 @@ import com.example.waterintakereminder.Database.userDetails;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.LocalDate;
-
 public class onBoardingWeather extends AppCompatActivity {
     ExtendedFloatingActionButton nextButtonWeather;
     FloatingActionButton prevButtonWeather;
-    CardView lowTemperature, moderateTemperature, highTemperature;
+    CardView coolTemp, modTemp, hotTemp;
     ImageView check1, check2, check3;
     private String weather="hot";
     @Override
@@ -45,40 +43,41 @@ public class onBoardingWeather extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 details.setWeather(weather);
-                dbHandler.insertUserDetails();
                 dbHandler.insertDate("2023-06-07");
-                Intent intent = new Intent(onBoardingWeather.this, lastOnboard.class);
+                Intent intent = new Intent(onBoardingWeather.this, dailyGoalSplashOnBoard.class);
                 startActivity(intent);
             }
         });
 
-        highTemperature = findViewById(R.id.highTemperature);
-        lowTemperature = findViewById(R.id.lowTemperature);
-        moderateTemperature = findViewById(R.id.moderateTemperature);
-        setColor(highTemperature, "#244AC7EF", "#80D9D9D9", lowTemperature, moderateTemperature);
+        hotTemp = findViewById(R.id.hotTemp);
+        coolTemp = findViewById(R.id.coolTemp);
+        modTemp = findViewById(R.id.modTemp);
+        setColor(hotTemp, "#244AC7EF", "#80D9D9D9", coolTemp, modTemp);
         show(check1,check2, check3);
-        lowTemperature.setOnClickListener(new View.OnClickListener() {
+        coolTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                weather = "low";
                 details.setWeather("low");
-                setColor(lowTemperature, "#244AC7EF", "#80D9D9D9", highTemperature, moderateTemperature);
+                setColor(coolTemp, "#244AC7EF", "#80D9D9D9", hotTemp, modTemp);
                 show(check3, check2, check1);
             }
         });
-       highTemperature.setOnClickListener(new View.OnClickListener() {
+       hotTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                weather = "high";
                 details.setWeather("high");
-                setColor(highTemperature, "#244AC7EF", "#80D9D9D9", lowTemperature, moderateTemperature);
+                setColor(hotTemp, "#244AC7EF", "#80D9D9D9", coolTemp, modTemp);
                 show(check1, check2, check3);
             }
         });
-       moderateTemperature.setOnClickListener(new View.OnClickListener() {
+       modTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                details.setWeather("moderate");
+                weather = "moderate";
                 show(check2, check3, check1);
-                setColor(moderateTemperature, "#244AC7EF", "#80D9D9D9", highTemperature, lowTemperature);
+                setColor(modTemp, "#244AC7EF", "#80D9D9D9", hotTemp, coolTemp);
             }
         });
     }

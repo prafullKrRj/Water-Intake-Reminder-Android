@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A6DFEB"
+    android:forceDarkAllowed="false"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -25,38 +26,51 @@
             app:titleTextColor="@color/white"
             app:titleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"
             android:background="#C442BBEE">
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
-                <com.google.android.material.imageview.ShapeableImageView
+                <com.makeramen.roundedimageview.RoundedImageView
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:riv_corner_radius="@dimen/_16sdp"
                     android:id="@+id/logoOnToolBar"
                     android:src="@drawable/logo"
                     android:layout_gravity="center_vertical"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp">
-                </com.google.android.material.imageview.ShapeableImageView>
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32ssp">
+                </com.makeramen.roundedimageview.RoundedImageView>
                 <TextView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/logoOnToolBar"
+                    android:layout_marginStart="@dimen/_7sdp"
                     android:id="@+id/textViewToolBar"
                     android:textColor="@color/white"
                     android:fontFamily="@font/comic"
                     android:textSize="@dimen/_16ssp"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
+                    android:gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                 </TextView>
                 <androidx.appcompat.widget.AppCompatImageButton
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginEnd="@dimen/_30sdp"
                     android:id="@+id/reminderToggleToolBar"
                     android:background="@android:color/transparent"
                     android:padding="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                 </androidx.appcompat.widget.AppCompatImageButton>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
         <FrameLayout
             android:id="@+id/container"

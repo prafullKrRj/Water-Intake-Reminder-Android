@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:forceDarkAllowed="false"
+
     android:layout_height="match_parent"
     tools:context=".onBoardings.onBoardingWeather">
 
@@ -45,6 +47,8 @@
 
     <TextView
         android:id="@+id/weatherTextView"
+        android:textColor="@color/black"
+
         android:layout_marginTop="@dimen/_100sdp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
@@ -74,6 +78,8 @@
             android:id="@+id/activityQuote"
             android:gravity="center"
             android:paddingStart="@dimen/_10sdp"
+            android:textColor="@color/black"
+
             android:paddingEnd="@dimen/_10sdp"
             android:text="@string/weather_quote"
             android:textSize="@dimen/_13ssp"
@@ -122,7 +128,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/highTemperature"
+            android:id="@+id/hotTemp"
             android:layout_width="match_parent"
             android:clickable="false"
             app:cardUseCompatPadding="true"
@@ -150,6 +156,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/imageView1"
                     android:textSize="@dimen/_16ssp"
+                    android:textColor="@color/black"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_21sdp"
@@ -160,6 +168,8 @@
                 </TextView>
                 <ImageView
                     android:id="@+id/hotToggle"
+                    android:textColor="@color/black"
+
                     android:visibility="visible"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -173,7 +183,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/moderateTemperature"
+            android:id="@+id/modTemp"
             android:layout_marginTop="@dimen/_1sdp"
             android:layout_width="match_parent"
             app:cardUseCompatPadding="true"
@@ -199,6 +209,8 @@
                     android:id="@+id/moderate"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/black"
+
                     app:layout_constraintLeft_toRightOf="@id/imageView2"
                     android:textSize="@dimen/_16ssp"
                     android:layout_gravity="center_vertical"
@@ -224,7 +236,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/lowTemperature"
+            android:id="@+id/coolTemp"
             android:layout_marginTop="@dimen/_1sdp"
             android:layout_width="match_parent"
             app:cardUseCompatPadding="true"
@@ -248,6 +260,8 @@
                 </ImageView>
                 <TextView
                     android:id="@+id/cool"
+                    android:textColor="@color/black"
+
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/imageView3"

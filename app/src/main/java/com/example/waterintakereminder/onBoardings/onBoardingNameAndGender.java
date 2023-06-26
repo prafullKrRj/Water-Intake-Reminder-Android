@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -63,6 +64,14 @@ public class onBoardingNameAndGender extends AppCompatActivity {
                     warningName.setText(R.string.enter_your_name);
                 }
                 else{
+                    // Get an instance of SharedPreferences
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("name", nameEditText.getText().toString());
+                    editor.putString("age", ageEditText.getText().toString());
+                    editor.putString("gender", gender);
+                    editor.apply();
+
                     details.setName(nameEditText.getText().toString());
                     details.setGender(gender);
                     details.setAge(ageEditText.getText().toString());
