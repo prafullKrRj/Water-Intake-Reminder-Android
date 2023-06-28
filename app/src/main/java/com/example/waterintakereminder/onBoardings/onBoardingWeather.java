@@ -35,7 +35,7 @@ public class onBoardingWeather extends AppCompatActivity {
         prevButtonWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(onBoardingWeather.this, onBoardingActivityLevel.class);
+                Intent intent = new Intent(onBoardingWeather.this, sleepActivity.class);
                 startActivity(intent);
             }
         });

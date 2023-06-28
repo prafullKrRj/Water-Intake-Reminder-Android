@@ -28,7 +28,7 @@ public class aboutFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    // TODO: Rename and changeUserDetails types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -44,7 +44,7 @@ public class aboutFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment aboutFragment.
      */
-    // TODO: Rename and change types and number of parameters
+    // TODO: Rename and changeUserDetails types and number of parameters
     public static aboutFragment newInstance(String param1, String param2) {
         aboutFragment fragment = new aboutFragment();
         Bundle args = new Bundle();

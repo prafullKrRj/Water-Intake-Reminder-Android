@@ -3,7 +3,7 @@
     <string name="selected_card_view">#244AC7EF</string>
     <string name="card_view">#80D9D9D9</string>
     <string name="addwater">addWater</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or changeUserDetails this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="number_picker_formatter">number_picker_formatter</string>
     <!-- Preference Titles -->
@@ -66,4 +66,12 @@
     <string name="personal_data">Personal Data</string>
     <string name="others">Others</string>
     <string name="share">Share</string>
+    <string name="reminder_interval">Reminder Interval</string>
+    <string name="wakeup_and_sleep_schedule">WakeUp and Sleep Schedule</string>
+    <string name="every">Every</string>
+    <string name="minutes">minutes</string>
+    <string name="sleep_schedule">Sleep Schedule</string>
+    <string name="sleep_quote">Your Sleep helps us to know when to Remind you</string>
+    <string name="save">Save</string>
+    <string name="exit_txt">Dou you really want to exit?</string>
 </resources>

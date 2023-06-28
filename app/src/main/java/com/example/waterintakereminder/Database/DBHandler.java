@@ -4,23 +4,31 @@ import static com.example.waterintakereminder.Database.params_db.params.ACTIVITY
 import static com.example.waterintakereminder.Database.params_db.params.AGE;
 import static com.example.waterintakereminder.Database.params_db.params.AMOUNT_AMOUNT_TABLE;
 import static com.example.waterintakereminder.Database.params_db.params.ANALYTICS_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.COMMA;
 import static com.example.waterintakereminder.Database.params_db.params.CURRENT_AMOUNT;
 import static com.example.waterintakereminder.Database.params_db.params.CURRENT_TIME;
 import static com.example.waterintakereminder.Database.params_db.params.DAILY_INTAKE_TABLE;
 import static com.example.waterintakereminder.Database.params_db.params.DATABASE_NAME;
 import static com.example.waterintakereminder.Database.params_db.params.DATE;
 import static com.example.waterintakereminder.Database.params_db.params.DB_VERSION;
+import static com.example.waterintakereminder.Database.params_db.params.END_HOUR;
+import static com.example.waterintakereminder.Database.params_db.params.END_MIN;
 import static com.example.waterintakereminder.Database.params_db.params.FINAL_AMOUNT;
 import static com.example.waterintakereminder.Database.params_db.params.GENDER;
 import static com.example.waterintakereminder.Database.params_db.params.HISTORY_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.INTEGER;
+import static com.example.waterintakereminder.Database.params_db.params.INTERVAL;
+import static com.example.waterintakereminder.Database.params_db.params.SLEEP_ID;
+import static com.example.waterintakereminder.Database.params_db.params.SLEEP_TABLE;
+import static com.example.waterintakereminder.Database.params_db.params.START_HOUR;
+import static com.example.waterintakereminder.Database.params_db.params.START_MIN;
 import static com.example.waterintakereminder.Database.params_db.params.TABLE_AMOUNT;
+import static com.example.waterintakereminder.Database.params_db.params.TEXT;
 import static com.example.waterintakereminder.Database.params_db.params.USERNAME;
 import static com.example.waterintakereminder.Database.params_db.params.WEATHER;
 import static com.example.waterintakereminder.Database.params_db.params.WEIGHT;
 import static com.example.waterintakereminder.Database.params_db.params.WEIGHT_UNIT;
-import static com.example.waterintakereminder.Database.params_db.params.id;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -35,8 +43,6 @@ import com.example.waterintakereminder.Fragments.HistoryManager.RecyclerView.His
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
@@ -50,15 +56,22 @@ public class DBHandler extends SQLiteOpenHelper {
         String historyTable = "create Table history(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, time TEXT)";
         String analyticsTable = "create Table analytics(id INTEGER PRIMARY KEY AUTOINCREMENT, amount TEXT, date TEXT)";
         String amount = "create table currAmount(amount TEXT)";
-        String dailyIntake = "create Table dailyIntake(id String, username TEXT, age TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather)";
+        String dailyIntake = "create Table dailyIntake(id TEXT, username TEXT, age TEXT, gender TEXT, weight TEXT, unit TEXT, activity TEXT, weather TEXT)";
         String prevDate = "create Table date(date TEXT)";
+        String sleep = "create Table " + SLEEP_TABLE + "("+
+                SLEEP_ID + TEXT + COMMA +
+                START_HOUR + INTEGER + COMMA+
+                START_MIN + INTEGER + COMMA+
+                END_HOUR+INTEGER+COMMA+
+                END_MIN+INTEGER+COMMA+
+                INTERVAL+INTEGER + ")";
         sqLiteDatabase.execSQL(historyTable);
         sqLiteDatabase.execSQL(analyticsTable);
         sqLiteDatabase.execSQL(amount);
         sqLiteDatabase.execSQL(dailyIntake);
         sqLiteDatabase.execSQL(prevDate);
+        sqLiteDatabase.execSQL(sleep);
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
@@ -170,6 +183,43 @@ public class DBHandler extends SQLiteOpenHelper {
         return n;
     }
 
+    public void insertSleepDetails(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        userDetails details = new userDetails();
+        values.put(SLEEP_ID, "1");
+        values.put(START_HOUR, details.getStartHour());
+        values.put(START_MIN, details.getStartMin());
+        values.put(END_HOUR, details.getEndHour());
+        values.put(END_MIN, details.getEndMin());
+        values.put(INTERVAL, details.getInterval());
+        database.insert(SLEEP_TABLE, null, values);
+    }
+    public boolean updateSleepDetails(String column, int val){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        int rowId = 1;
+        values.put(column, val);
+        int rowsAffected = database.update(SLEEP_TABLE, values, "id = ?", new String[]{"1"});
+        return rowsAffected > 0;
+    }
+    public List<Integer> getSleepDetails(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String select = "SELECT * FROM " + SLEEP_TABLE;
+        Cursor cursor = database.rawQuery(select, null);
+        List<Integer> list = new ArrayList<>();
+        if (cursor.moveToFirst())
+        {
+            do{
+                list.add(cursor.getInt(1));
+                list.add(cursor.getInt(2));
+                list.add(cursor.getInt(3));
+                list.add(cursor.getInt(4));
+                list.add(cursor.getInt(5));
+            }while (cursor.moveToNext());
+        }
+        return list;
+    }
     public void insertUserDetails(){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -202,7 +252,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public boolean change(String column, String value){
+    public boolean changeUserDetails(String column, String value){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         int rowId = 1;

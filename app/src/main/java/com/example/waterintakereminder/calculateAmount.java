@@ -13,7 +13,7 @@ public class calculateAmount {
     private String weather;
     public calculateAmount(String age, String gender, String weight, String weightUnit, String activityLevel, String weather)
     {
-        this.age = parse(age);
+        this.age = Integer.parseInt(age);
         this.gender = gender;
         this.weight = parse(weight);
         this.weightUnit = weightUnit;

@@ -22,9 +22,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.waterintakereminder.Database.DBHandler;
-import com.example.waterintakereminder.Fragments.SettingsFragment;
+import com.example.waterintakereminder.Dialogs.exitDialogBox;
+import com.example.waterintakereminder.Fragments.settingsManager.SettingsFragment;
 import com.example.waterintakereminder.Fragments.analyticsFragment;
 import com.example.waterintakereminder.Fragments.HistoryManager.historyFragment;
 import com.example.waterintakereminder.Fragments.drawerFragments.aboutFragment;
@@ -36,6 +38,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import org.w3c.dom.Text;
+
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,15 +50,22 @@ public class MainActivity extends AppCompatActivity {
     private boolean isToggled = false;
     private ImageButton reminderToggleToolBar;
     private ImageView logoOnToolBar;
-    private TextView textViewToolBar, userNameNavigationDrawer;
+    private TextView userNameNavigationDrawer;
+    public TextView textViewToolBar;
     private RoundedImageView roundedImageView;
     private String selectedChangeUnit = "ml";
     private String newWeight;
+    private DBHandler handler;
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        handler = new DBHandler(getApplicationContext());
+        setAlarmMain();
+        List<Integer> sl = handler.getSleepDetails();
+        //Toast.makeText(this, String.valueOf(sl.get(1)), Toast.LENGTH_SHORT).show();
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         textViewToolBar = findViewById(R.id.textViewToolBar);
@@ -142,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    private void setAlarmMain() {
+
+    }
 
     private void changeUnit() {
         CorneredDialogUnits dialog = new CorneredDialogUnits(this);
@@ -220,6 +235,23 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        finishAffinity();
+        exitDialogBox dialogBox = new exitDialogBox(this);
+        dialogBox.setCancelable(false);
+        dialogBox.show();
+
+        TextView cnl = dialogBox.findViewById(R.id.dontExitBtn);
+        TextView exit = dialogBox.findViewById(R.id.exitBtn);
+        cnl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogBox.dismiss();
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
+            }
+        });
     }
 }

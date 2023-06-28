@@ -21,26 +21,26 @@ public class changes {
     }
 
     public void changeWeight(int weight){
-        handler.change(WEIGHT, String.valueOf(weight));
+        handler.changeUserDetails(WEIGHT, String.valueOf(weight));
     }
 
     public void changeWeight(String weight){
-        handler.change(WEIGHT, weight);
+        handler.changeUserDetails(WEIGHT, weight);
     }
 
     public void changeGender(String gender){
-        handler.change(GENDER, gender);
+        handler.changeUserDetails(GENDER, gender);
     }
 
     public void changeActivityLevel(String activity){
-        handler.change(ACTIVITY_LEVEL, activity);
+        handler.changeUserDetails(ACTIVITY_LEVEL, activity);
     }
 
     public void changeWeather(String weather){
-        handler.change(WEATHER, weather);
+        handler.changeUserDetails(WEATHER, weather);
     }
 
     public void changeWeightMeasuringUnit(String unit){
-        handler.change(WEIGHT_UNIT, unit);
+        handler.changeUserDetails(WEIGHT_UNIT, unit);
     }
 }

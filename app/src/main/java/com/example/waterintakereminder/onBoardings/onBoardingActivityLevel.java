@@ -43,7 +43,7 @@ public class onBoardingActivityLevel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 details.setDailyActivity(activity);
-                Intent intent = new Intent(onBoardingActivityLevel.this, onBoardingWeather.class);
+                Intent intent = new Intent(onBoardingActivityLevel.this, sleepActivity.class);
                 startActivity(intent);
             }
         });

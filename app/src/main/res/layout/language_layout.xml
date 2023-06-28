@@ -1,64 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_150sdp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:background="@drawable/dialog_box_shape"
-    android:forceDarkAllowed="false"
+    android:padding="@dimen/_15sdp"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <TextView
-        android:text="@string/language"
-        android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="@dimen/_13ssp"
-        android:layout_margin="@dimen/_7sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </TextView>
-
-    <androidx.appcompat.widget.AppCompatRadioButton
-        android:id="@+id/maleRadioButton"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:buttonTint="#83F0FF"
-        android:text="English" />
-
-    <androidx.appcompat.widget.AppCompatRadioButton
-        android:id="@+id/femaleRadioButton"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:text="Hindi"
+        android:text="@string/language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="@dimen/_3sdp"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/ok_button_gender"
-            android:padding="@dimen/_10sdp"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:textColor="@color/black"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-        <TextView
-            android:id="@+id/cancel_button_gender"
-            android:foreground="?attr/selectableItemBackground"
-            android:textColor="@color/black"
-            android:padding="@dimen/_10sdp"
-            app:layout_constraintRight_toLeftOf="@id/ok_button_gender"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <RadioButton
 
-        </TextView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/english"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:text="English"
+            />
+        <RadioButton
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:id="@+id/hindi"
+            android:text="हिन्दी"/>
+        <RadioButton
+            android:id="@+id/spanish"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:text="Español"/>
+        <RadioButton
+            android:id="@+id/German"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:text="Deutsch"/>
+        <RadioButton
+            android:id="@+id/Italiano"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:text="Italiano"/>
+        <RadioButton
+            android:id="@+id/Portuguese"
+            android:text="Português"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"/>
+        <RadioButton
+            android:id="@+id/Russian"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:text="Русский"/>
+        <RadioButton
+            android:id="@+id/Japanese"
+            android:text="日本語"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"/>
+        <RadioButton
+            android:id="@+id/mandarin_Chinese"
+            android:text="中文"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"/>
+        <RadioButton
+            android:id="@+id/arabic"
+            android:layout_margin="@dimen/_7sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_13ssp"
+            android:text="العربية"/>
+    </RadioGroup>
 </LinearLayout>

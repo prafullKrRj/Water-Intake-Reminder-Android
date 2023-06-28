@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:forceDarkAllowed="false"
-
     android:layout_height="match_parent"
-    tools:context=".onBoardings.onBoardingWeight">
+    tools:context=".onBoardings.sleepActivity">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_35sdp"
@@ -29,14 +27,14 @@
 
         </ImageView>
         <ImageView
-            android:src="@drawable/ring"
+            android:src="@drawable/ring_completed"
             android:layout_width="@dimen/_12sdp"
             android:layout_height="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_4sdp">
 
         </ImageView>
         <ImageView
-            android:src="@drawable/ring"
+            android:src="@drawable/ring_completed"
             android:layout_width="@dimen/_12sdp"
             android:layout_height="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_4sdp">
@@ -50,106 +48,107 @@
 
         </ImageView>
     </LinearLayout>
-
     <TextView
-        android:id="@+id/weightTextView"
+        android:id="@+id/sleepScheduleTextView"
         android:textColor="@color/black"
-
         android:layout_marginTop="@dimen/_100sdp"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/your_weight"
+        android:text="@string/sleep_schedule"
         android:textSize="@dimen/_25ssp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </TextView>
-    <TextView
-        android:id="@+id/weightQuote"
+    <LinearLayout
+        android:id="@+id/linearSleep"
+        android:gravity="center"
+        android:orientation="vertical"
         android:layout_marginTop="@dimen/_5sdp"
-        app:layout_constraintTop_toBottomOf="@id/weightTextView"
-        android:textColor="@color/black"
-
-        android:paddingHorizontal="@dimen/_5sdp"
+        android:layout_width="wrap_content"
+        android:paddingEnd="@dimen/_20sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/weight_quote"
-        android:textSize="@dimen/_13ssp"
-        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sleepScheduleTextView"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/sleepQuote"
+            android:gravity="center"
+            android:paddingStart="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="@string/sleep_quote"
+            android:textSize="@dimen/_13ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
 
-    </TextView>
-    <LinearLayout
-        android:id="@+id/linearWeighing"
-        app:layout_constraintTop_toBottomOf="@id/weightQuote"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_45sdp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginHorizontal="@dimen/_45sdp"
+        app:layout_constraintTop_toBottomOf="@id/linearSleep"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/weighingMachineImage"
-            android:layout_marginStart="@dimen/_40sdp"
-            android:src="@drawable/weighing"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp">
-        </ImageView>
-
-        <com.shawnlin.numberpicker.NumberPicker
-            android:id="@+id/numberPicker"
-            android:layout_width="@dimen/_55sdp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_50sdp"
-            app:np_dividerColor="#52000000"
-            app:np_selectedTextColor="#000000"
-            app:np_textColor="#9E000000">
-
-        </com.shawnlin.numberpicker.NumberPicker>
-    </LinearLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/kg"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_71sdp"
-        android:layout_marginTop="@dimen/_100sdp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:layout_constraintRight_toLeftOf="@id/lbs"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearWeighing">
-        <TextView
-            android:layout_gravity="center"
-            android:text="@string/kg"
-            android:textColor="@color/black"
-
-            android:textSize="@dimen/_17ssp"
+        <com.google.android.material.card.MaterialCardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/cardWake"
+            android:background="@color/card_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        </TextView>
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/lbs"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_71sdp"
-        android:layout_marginTop="@dimen/_100sdp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:layout_constraintLeft_toRightOf="@id/kg"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearWeighing">
-        <TextView
-            android:layout_gravity="center"
-            android:text="@string/lbs"
-            android:textSize="@dimen/_17ssp"
-            android:textColor="@color/black"
+                <TextView
+                    android:id="@+id/wakeUpTextOnBoard"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:text="08:00"
+                    android:textSize="@dimen/_20ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            app:layout_constraintLeft_toRightOf="@id/cardWake"
+            app:layout_constraintRight_toLeftOf="@id/cardSleep"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/_20ssp"
+            android:text="-"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.card.MaterialCardView
+            android:foreground="?android:attr/selectableItemBackground"
+
+            android:id="@+id/cardSleep"
+            android:background="@color/card_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        </TextView>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/sleepTextOnBoard"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:textSize="@dimen/_20ssp"
+                    android:text="20:00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/prevButtonWeight"
+        android:id="@+id/prevButtonSleep"
         app:layout_constraintLeft_toLeftOf="parent"
         android:src="@drawable/baseline_arrow_back_ios_24"
         android:backgroundTint="#4AC7EF"
@@ -160,12 +159,13 @@
         app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/nextButtonWeight"
+        android:id="@+id/nextButtonSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_20sdp"
@@ -179,5 +179,4 @@
         app:layout_constraintRight_toRightOf="parent">
 
     </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

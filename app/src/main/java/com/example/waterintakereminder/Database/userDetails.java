@@ -7,7 +7,49 @@ public class userDetails {
     private static String weight;
     private static String weightUnit;
     private static String dailyActivity;
+    private static int startHour, startMin, endHour, endMin, interval;
     private static String weather;
+
+
+    public int getStartHour() {
+        return startHour;
+    }
+
+    public void setStartHour(int startHour) {
+        userDetails.startHour = startHour;
+    }
+
+    public int getStartMin() {
+        return startMin;
+    }
+
+    public void setStartMin(int startMin) {
+        userDetails.startMin = startMin;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(int endHour) {
+        userDetails.endHour = endHour;
+    }
+
+    public int getEndMin() {
+        return endMin;
+    }
+
+    public void setEndMin(int endMin) {
+        userDetails.endMin = endMin;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval(int interval) {
+        userDetails.interval = interval;
+    }
 
     public String getAge() {
         return age;

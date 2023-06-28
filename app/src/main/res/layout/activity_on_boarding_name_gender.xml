@@ -54,6 +54,13 @@
                     android:layout_marginStart="@dimen/_4sdp">
 
                 </ImageView>
+                <ImageView
+                    android:src="@drawable/ring"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginStart="@dimen/_4sdp">
+
+                </ImageView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/linearLayoutName"

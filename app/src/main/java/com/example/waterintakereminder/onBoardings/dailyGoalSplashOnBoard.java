@@ -26,18 +26,21 @@ public class dailyGoalSplashOnBoard extends AppCompatActivity {
         TextView textView = findViewById(R.id.dailyGoal);
         DBHandler dbHandler = new DBHandler(this);
         dbHandler.insertUserDetails();
+        dbHandler.insertSleepDetails();
         SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("onboarding_completed", true);
         editor.apply();
         List<String> list = dbHandler.getUserValues();
-
+        StringBuilder sb = new StringBuilder();
+        for (String s : list) sb.append(s).append(" ");
         dbHandler.insertDate("2023-06-07");
-        calculateAmount amount = new calculateAmount(list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6));
+        calculateAmount amount = new calculateAmount(list.get(1), list.get(2), (list.get(3)), list.get(4), list.get(5), list.get(6));
         textView.setText(String.valueOf(amount.calculate()));
         new Handler().postDelayed((Runnable) () -> {
             Intent toHome = new Intent(dailyGoalSplashOnBoard.this, MainActivity.class);
             startActivity(toHome);
+            finish();
         }, 3000);
         LottieAnimationView anim1 = findViewById(R.id.anim1);
         anim1.setSpeed(.7f);
